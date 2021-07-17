@@ -24,13 +24,19 @@ describe("chessBoard function", () => {
 
   it("function has been called with incorrect amount of arguments", () => {
     expect(makeTheChessBoard()).to.deep.equal(
-      showMessageWith("failed", "check the list of arguments")
+      showMessageWith(
+        "failed",
+        "check the list of arguments: 'length' and 'width' should be a number > 0, 'symbol' should be a string with length > 0"
+      )
     );
   });
 
   it("function has been called with incorrect type of arguments", () => {
     expect(makeTheChessBoard("0", "0", "*")).to.deep.equal(
-      showMessageWith("failed", "check the list of arguments")
+      showMessageWith(
+        "failed",
+        "check the list of arguments: 'length' and 'width' should be a number > 0, 'symbol' should be a string with length > 0"
+      )
     );
   });
 
