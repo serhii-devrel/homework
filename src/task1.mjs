@@ -12,7 +12,13 @@ export function makeTheChessBoard(length, width, symbol) {
       typeof symbol !== "string"
     ) {
       throw new Error("incorrect arguments");
-    } else if (length <= 0 || width <= 0 || sizeOf(symbol) <= 0) {
+    } else if (
+      !Number.isInteger(length) ||
+      length <= 0 ||
+      !Number.isInteger(width) ||
+      width <= 0 ||
+      sizeOf(symbol) <= 0
+    ) {
       throw new Error("incorrect arguments");
     }
 
