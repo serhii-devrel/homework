@@ -3,9 +3,7 @@ import { showMessageWith } from "./helpers.mjs";
 
 export function sortTriangles(triangles = []) {
   try {
-    if (!Array.isArray(triangles)) {
-      throw new Error("incorrect arguments");
-    } else if (arguments.length > 1) {
+    if (!Array.isArray(triangles) || arguments.length > 1) {
       throw new Error("incorrect arguments");
     }
     return [

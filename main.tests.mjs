@@ -2,6 +2,7 @@
 import { makeTheChessBoard } from "./src/task1.mjs";
 import { coverAnalysis } from "./src/task2.mjs";
 import { sortTriangles } from "./src/task3.mjs";
+import { checkPalindrome } from "./src/task4.mjs";
 
 // Validator
 import { showMessageWith } from "./src/helpers.mjs";
@@ -17,11 +18,13 @@ describe("Tests for DEMO 1", () => {
   let makeTheChessBoardSPY;
   let coverAnalysisSPY;
   let sortTrianglesSPY;
+  let checkPalindromeSPY;
 
   beforeEach(() => {
     makeTheChessBoardSPY = spy(makeTheChessBoard);
     coverAnalysisSPY = spy(coverAnalysis);
     sortTrianglesSPY = spy(sortTriangles);
+    checkPalindromeSPY = spy(checkPalindrome);
   });
 
   afterEach(() => {
@@ -159,7 +162,42 @@ describe("Tests for DEMO 1", () => {
     });
   });
 
-  describe("checkPalindrome function", () => {});
+  describe("checkPalindrome function", () => {
+    it("function has been called with incorrect amount of arguments", () => {
+      expect(checkPalindrome(123, 123)).to.deep.equal(
+        showMessageWith(
+          "failed",
+          "check the list of arguments: you have to pass only whole number"
+        )
+      );
+    });
+
+    it("function has been called with incorrect type of arguments", () => {
+      expect(checkPalindrome("test string")).to.deep.equal(
+        showMessageWith(
+          "failed",
+          "check the list of arguments: you have to pass only whole number"
+        )
+      );
+    });
+
+    it("function has been called correctly", () => {
+      checkPalindromeSPY(12344456);
+      expect(checkPalindromeSPY).to.have.been.called.with(12344456);
+    });
+
+    it("function has been called with correct argument and returns number", () => {
+      expect(checkPalindrome(12344456)).to.be.an("number");
+    });
+
+    it("palindrome has been found", () => {
+      expect(checkPalindromeSPY(1337)).to.equal(33);
+    });
+
+    it("palindrome hasn't been found", () => {
+      expect(checkPalindromeSPY(8)).to.equal(0);
+    });
+  });
 
   describe("countLuckyTickets function", () => {});
 

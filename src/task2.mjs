@@ -7,7 +7,8 @@ export function coverAnalysis(firstCover, secondCover) {
       typeof firstCover.a !== "number" ||
       typeof firstCover.b !== "number" ||
       typeof secondCover.c !== "number" ||
-      typeof secondCover.d !== "number"
+      typeof secondCover.d !== "number" ||
+      arguments.length > 2
     ) {
       throw new Error("incorrect arguments");
     }

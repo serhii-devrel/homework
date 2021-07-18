@@ -9,7 +9,8 @@ export function makeTheChessBoard(length, width, symbol) {
     if (
       typeof length !== "number" ||
       typeof width !== "number" ||
-      typeof symbol !== "string"
+      typeof symbol !== "string" ||
+      arguments.length > 3
     ) {
       throw new Error("incorrect arguments");
     } else if (
