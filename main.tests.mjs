@@ -97,12 +97,15 @@ describe("Tests for DEMO 1", () => {
     });
 
     it("[???] both covers can be nested", () => {});
+
     it("covers cannot be nested", () => {
       expect(coverAnalysis({ a: 10, b: 10 }, { c: 15, d: 5 })).to.equal(0);
     });
+
     it("only first cover can be nested", () => {
       expect(coverAnalysis({ a: 10, b: 10 }, { c: 15, d: 15 })).to.equal(1);
     });
+
     it("only second cover can be nested", () => {
       expect(coverAnalysis({ a: 10, b: 12.7 }, { c: 8.6, d: 5.2 })).to.equal(2);
     });
