@@ -3,6 +3,9 @@ import { makeTheChessBoard } from "./src/task1.mjs";
 import { coverAnalysis } from "./src/task2.mjs";
 import { sortTriangles } from "./src/task3.mjs";
 import { checkPalindrome } from "./src/task4.mjs";
+import { countLuckyTickets } from "./src/task5.mjs";
+import { generateNumbersSequence } from "./src/task6.mjs";
+import { generateFibonacciSequence } from "./src/task7.mjs";
 
 // Validator
 import { showMessageWith } from "./src/helpers.mjs";
@@ -19,12 +22,18 @@ describe("Tests for DEMO 1", () => {
   let coverAnalysisSPY;
   let sortTrianglesSPY;
   let checkPalindromeSPY;
+  let countLuckyTicketsSPY;
+  let generateNumbersSequenceSPY;
+  let generateFibonacciSequenceSPY;
 
   beforeEach(() => {
     makeTheChessBoardSPY = spy(makeTheChessBoard);
     coverAnalysisSPY = spy(coverAnalysis);
     sortTrianglesSPY = spy(sortTriangles);
     checkPalindromeSPY = spy(checkPalindrome);
+    countLuckyTicketsSPY = spy(countLuckyTickets);
+    generateNumbersSequenceSPY = spy(generateNumbersSequence);
+    generateFibonacciSequenceSPY = spy(generateFibonacciSequence);
   });
 
   afterEach(() => {
@@ -43,6 +52,15 @@ describe("Tests for DEMO 1", () => {
 
     it("function has been called with incorrect type of arguments [FLOAT]", () => {
       expect(makeTheChessBoard(2.5, 2.5, "*")).to.deep.equal(
+        showMessageWith(
+          "failed",
+          "check the list of arguments: 'length' and 'width' should be a number > 0, 'symbol' should be a string with length > 0"
+        )
+      );
+    });
+
+    it("function has been called with incorrect type of arguments [NEGATIVE]", () => {
+      expect(makeTheChessBoard(-5, -5, "*")).to.deep.equal(
         showMessageWith(
           "failed",
           "check the list of arguments: 'length' and 'width' should be a number > 0, 'symbol' should be a string with length > 0"
@@ -172,8 +190,26 @@ describe("Tests for DEMO 1", () => {
       );
     });
 
-    it("function has been called with incorrect type of arguments", () => {
+    it("function has been called with incorrect type of arguments [STRING]", () => {
       expect(checkPalindrome("test string")).to.deep.equal(
+        showMessageWith(
+          "failed",
+          "check the list of arguments: you have to pass only whole number"
+        )
+      );
+    });
+
+    it("function has been called with incorrect type of arguments [NEGATIVE]", () => {
+      expect(checkPalindrome(-123)).to.deep.equal(
+        showMessageWith(
+          "failed",
+          "check the list of arguments: you have to pass only whole number"
+        )
+      );
+    });
+
+    it("function has been called with incorrect type of arguments [FLOAT]", () => {
+      expect(checkPalindrome(123.4)).to.deep.equal(
         showMessageWith(
           "failed",
           "check the list of arguments: you have to pass only whole number"
@@ -201,7 +237,58 @@ describe("Tests for DEMO 1", () => {
 
   describe("countLuckyTickets function", () => {});
 
-  describe("generateNumbersSequence function", () => {});
+  describe("generateNumbersSequence function", () => {
+    it("function has been called with incorrect amount of arguments", () => {
+      expect(generateNumbersSequence(4, 8, 4)).to.deep.equal(
+        showMessageWith(
+          "failed",
+          "check the list of arguments: 'length' and 'minimal value' should be a whole number > 0"
+        )
+      );
+    });
+
+    it("function has been called with incorrect type of arguments [STRING]", () => {
+      expect(
+        generateNumbersSequence("test string", "test string")
+      ).to.deep.equal(
+        showMessageWith(
+          "failed",
+          "check the list of arguments: 'length' and 'minimal value' should be a whole number > 0"
+        )
+      );
+    });
+
+    it("function has been called with incorrect type of arguments [NEGATIVE]", () => {
+      expect(generateNumbersSequence(-4, -8)).to.deep.equal(
+        showMessageWith(
+          "failed",
+          "check the list of arguments: 'length' and 'minimal value' should be a whole number > 0"
+        )
+      );
+    });
+
+    it("function has been called with incorrect type of arguments [FLOAT]", () => {
+      expect(generateNumbersSequence(3.4, 3.7)).to.deep.equal(
+        showMessageWith(
+          "failed",
+          "check the list of arguments: 'length' and 'minimal value' should be a whole number > 0"
+        )
+      );
+    });
+
+    it("function has been called correctly", () => {
+      generateNumbersSequenceSPY(4, 8);
+      expect(generateNumbersSequenceSPY).to.have.been.called.with(4, 8);
+    });
+
+    it("function has been called with correct arguments and returns string", () => {
+      expect(generateNumbersSequence(4, 8)).to.be.an("string");
+    });
+
+    it("numbers sequence has been generated", () => {
+      expect(generateNumbersSequence(4, 8)).to.equal("3, 4, 5, 6");
+    });
+  });
 
   describe("generateFibonacciSequence function", () => {});
 });

@@ -3,7 +3,7 @@ import { showMessageWith } from "./helpers.mjs";
 
 export function checkPalindrome(num) {
   try {
-    if (!Number.isInteger(num) || arguments.length > 1) {
+    if (!Number.isInteger(num) || num < 0 || arguments.length > 1) {
       throw new Error("incorrect arguments");
     }
     return 0;
