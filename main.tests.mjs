@@ -1,6 +1,7 @@
 // Functions
 import { makeTheChessBoard } from "./src/task1.mjs";
 import { coverAnalysis } from "./src/task2.mjs";
+import { sortTriangles } from "./src/task3.mjs";
 
 // Validator
 import { showMessageWith } from "./src/helpers.mjs";
@@ -15,10 +16,12 @@ const spy = chai.spy;
 describe("Tests for DEMO 1", () => {
   let makeTheChessBoardSPY;
   let coverAnalysisSPY;
+  let sortTrianglesSPY;
 
   beforeEach(() => {
     makeTheChessBoardSPY = spy(makeTheChessBoard);
     coverAnalysisSPY = spy(coverAnalysis);
+    sortTrianglesSPY = spy(sortTriangles);
   });
 
   afterEach(() => {
@@ -111,7 +114,50 @@ describe("Tests for DEMO 1", () => {
     });
   });
 
-  describe("sortTriangles function", () => {});
+  describe("sortTriangles function", () => {
+    it("function has been called with incorrect amount of arguments", () => {
+      expect(sortTriangles([], [])).to.deep.equal(
+        showMessageWith(
+          "failed",
+          "check the list of arguments: you have to pass only an array of objects"
+        )
+      );
+    });
+
+    it("function has been called with incorrect type of arguments", () => {
+      expect(sortTriangles("test string")).to.deep.equal(
+        showMessageWith(
+          "failed",
+          "check the list of arguments: you have to pass only an array of objects"
+        )
+      );
+    });
+
+    it("function has been called correctly", () => {
+      sortTrianglesSPY([{ vertices: "ABC", a: 10, b: 20, c: 22.36 }]);
+      expect(sortTrianglesSPY).to.have.been.called.with([
+        { vertices: "ABC", a: 10, b: 20, c: 22.36 },
+      ]);
+    });
+
+    it("function has been called with correct arguments and returns array", () => {
+      expect(
+        sortTriangles([{ vertices: "ABC", a: 10, b: 20, c: 22.36 }])
+      ).to.be.an("array");
+    });
+
+    it("triangles have been sorted", () => {
+      expect(
+        sortTriangles([
+          { vertices: "ABC", a: 10, b: 20, c: 22.36 },
+          { vertices: "DBC", a: 14, b: 12, c: 19 },
+        ])
+      ).to.deep.equal([
+        { vertices: "ABC", square: 100 },
+        { vertices: "DBC", square: 84 },
+      ]);
+    });
+  });
 
   describe("checkPalindrome function", () => {});
 
