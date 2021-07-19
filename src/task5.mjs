@@ -14,7 +14,7 @@ export function countLuckyTickets(context) {
     ) {
       throw new Error("incorrect arguments");
     }
-    return { method: "", counter: 0 };
+    return { win: "", counter: 0 };
   } catch {
     return showMessageWith(
       "failed",
