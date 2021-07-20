@@ -3,9 +3,13 @@ import { showMessageWith } from "./helpers.mjs";
 
 export function generateNumbersSequence(n, m) {
   try {
-    if (!Number.isInteger(n) || !Number.isInteger(m) || arguments.length > 2) {
-      throw new Error("incorrect arguments");
-    } else if (n <= 0 || m <= 0) {
+    if (
+      !Number.isInteger(n) ||
+      !Number.isInteger(m) ||
+      arguments.length > 2 ||
+      n <= 0 ||
+      m <= 0
+    ) {
       throw new Error("incorrect arguments");
     }
     return "3, 4, 5, 6";

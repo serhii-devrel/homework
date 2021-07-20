@@ -374,12 +374,10 @@ describe("Tests for DEMO 1", () => {
     });
 
     it("function has been called with incorrect constraint [min > max]", () => {
-      expect(countLuckyTickets({ min: 10, max: 5 })).to.deep.equal(
-        showMessageWith(
-          "failed",
-          "check the list of arguments: you have to pass only object with next structure: { min: number, max: number }, where 'max > 0, min >= 0' , and 'max > min'"
-        )
-      );
+      expect(countLuckyTickets({ min: 10, max: 5 })).to.deep.equal({
+        winner: "",
+        tickets: { simple: 0, hard: 0 },
+      });
     });
 
     it("function has been called with incorrect constraint [only max <= 0]", () => {
@@ -393,6 +391,24 @@ describe("Tests for DEMO 1", () => {
 
     it("function has been called with incorrect constraint [only min <= 0]", () => {
       expect(countLuckyTickets({ min: 0, max: 5 })).to.deep.equal(
+        showMessageWith(
+          "failed",
+          "check the list of arguments: you have to pass only object with next structure: { min: number, max: number }, where 'max > 0, min >= 0' , and 'max > min'"
+        )
+      );
+    });
+
+    it("function has been called with incorrect constraint [max in range(1, 999999)]", () => {
+      expect(countLuckyTickets({ min: 1, max: 10000000 })).to.deep.equal(
+        showMessageWith(
+          "failed",
+          "check the list of arguments: you have to pass only object with next structure: { min: number, max: number }, where 'max > 0, min >= 0' , and 'max > min'"
+        )
+      );
+    });
+
+    it("function has been called with incorrect constraint [min in range(1, 999999)]", () => {
+      expect(countLuckyTickets({ min: 10000000, max: 5000 })).to.deep.equal(
         showMessageWith(
           "failed",
           "check the list of arguments: you have to pass only object with next structure: { min: number, max: number }, where 'max > 0, min >= 0' , and 'max > min'"
@@ -435,7 +451,7 @@ describe("Tests for DEMO 1", () => {
       });
     });
 
-    it("complicated method win", () => {
+    it("hard method win", () => {
       expect(countLuckyTickets({ min: 100, max: 200 })).to.deep.equal();
     });
 
@@ -444,7 +460,10 @@ describe("Tests for DEMO 1", () => {
     });
 
     it("both methods lose", () => {
-      expect(countLuckyTickets({ min: 100, max: 200 })).to.deep.equal();
+      expect(countLuckyTickets({ min: 100, max: 200 })).to.deep.equal({
+        winner: "both",
+        tickets: { simple: 0, hard: 0 },
+      });
     });
   });
 
@@ -506,7 +525,7 @@ describe("Tests for DEMO 1", () => {
       expect(generateFibonacciSequence({ min: 5, max: 10 }, 5)).to.deep.equal(
         showMessageWith(
           "failed",
-          "check the list of arguments: you should pass only object like: { min: number, max: number } OR { length: number }, where 'min >= 0', 'max > 0', 'length >= 0' and 'max < min'"
+          "check the list of arguments: you should pass only object like: { min: number, max: number } OR { length: number }, where 'min >= 0', 'max > 0', 'length >= 0' and 'max > min'"
         )
       );
     });
@@ -515,7 +534,7 @@ describe("Tests for DEMO 1", () => {
       expect(generateFibonacciSequence({ min: "3", max: "5" })).to.deep.equal(
         showMessageWith(
           "failed",
-          "check the list of arguments: you should pass only object like: { min: number, max: number } OR { length: number }, where 'min >= 0', 'max > 0', 'length >= 0' and 'max < min'"
+          "check the list of arguments: you should pass only object like: { min: number, max: number } OR { length: number }, where 'min >= 0', 'max > 0', 'length >= 0' and 'max > min'"
         )
       );
     });
@@ -524,7 +543,7 @@ describe("Tests for DEMO 1", () => {
       expect(generateFibonacciSequence({ length: "5" })).to.deep.equal(
         showMessageWith(
           "failed",
-          "check the list of arguments: you should pass only object like: { min: number, max: number } OR { length: number }, where 'min >= 0', 'max > 0', 'length >= 0' and 'max < min'"
+          "check the list of arguments: you should pass only object like: { min: number, max: number } OR { length: number }, where 'min >= 0', 'max > 0', 'length >= 0' and 'max > min'"
         )
       );
     });
@@ -533,7 +552,7 @@ describe("Tests for DEMO 1", () => {
       expect(generateFibonacciSequence({ min: -3, max: -5 })).to.deep.equal(
         showMessageWith(
           "failed",
-          "check the list of arguments: you should pass only object like: { min: number, max: number } OR { length: number }, where 'min >= 0', 'max > 0', 'length >= 0' and 'max < min'"
+          "check the list of arguments: you should pass only object like: { min: number, max: number } OR { length: number }, where 'min >= 0', 'max > 0', 'length >= 0' and 'max > min'"
         )
       );
     });
@@ -542,7 +561,7 @@ describe("Tests for DEMO 1", () => {
       expect(generateFibonacciSequence({ length: -5 })).to.deep.equal(
         showMessageWith(
           "failed",
-          "check the list of arguments: you should pass only object like: { min: number, max: number } OR { length: number }, where 'min >= 0', 'max > 0', 'length >= 0' and 'max < min'"
+          "check the list of arguments: you should pass only object like: { min: number, max: number } OR { length: number }, where 'min >= 0', 'max > 0', 'length >= 0' and 'max > min'"
         )
       );
     });
@@ -551,7 +570,7 @@ describe("Tests for DEMO 1", () => {
       expect(generateFibonacciSequence({ min: 3.5, max: 5.5 })).to.deep.equal(
         showMessageWith(
           "failed",
-          "check the list of arguments: you should pass only object like: { min: number, max: number } OR { length: number }, where 'min >= 0', 'max > 0', 'length >= 0' and 'max < min'"
+          "check the list of arguments: you should pass only object like: { min: number, max: number } OR { length: number }, where 'min >= 0', 'max > 0', 'length >= 0' and 'max > min'"
         )
       );
     });
@@ -560,7 +579,7 @@ describe("Tests for DEMO 1", () => {
       expect(generateFibonacciSequence({ length: 5.5 })).to.deep.equal(
         showMessageWith(
           "failed",
-          "check the list of arguments: you should pass only object like: { min: number, max: number } OR { length: number }, where 'min >= 0', 'max > 0', 'length >= 0' and 'max < min'"
+          "check the list of arguments: you should pass only object like: { min: number, max: number } OR { length: number }, where 'min >= 0', 'max > 0', 'length >= 0' and 'max > min'"
         )
       );
     });

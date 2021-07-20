@@ -3,18 +3,23 @@ import { showMessageWith } from "./helpers.mjs";
 
 export function countLuckyTickets(context) {
   const { min, max } = context;
+
   try {
+    const MIN = min > max ? max : min;
+    const MAX = max < min ? min : max;
+
     if (
-      !Number.isInteger(min) ||
-      !Number.isInteger(max) ||
+      !Number.isInteger(MIN) ||
+      !Number.isInteger(MAX) ||
       arguments.length > 1 ||
-      min <= 0 ||
-      max <= 0 ||
-      max < min
+      MAX > 999999 ||
+      MIN > 999999 ||
+      MIN <= 0 ||
+      MAX <= 0
     ) {
       throw new Error("incorrect arguments");
     }
-    return { win: "", counter: 0 };
+    return { winner: "", tickets: { simple: 0, hard: 0 } };
   } catch {
     return showMessageWith(
       "failed",

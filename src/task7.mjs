@@ -3,20 +3,20 @@ import { showMessageWith } from "./helpers.mjs";
 
 export function generateFibonacciSequence(context) {
   try {
-    const size = Object.keys(context).length;
+    const CONTEXT_SIZE = Object.keys(context).length;
     const { min, max, length } = context;
 
     if (arguments.length > 1) {
       throw new Error("incorrect arguments");
     }
 
-    if (size === 1) {
+    if (CONTEXT_SIZE === 1) {
       if (!Number.isInteger(length) || length < 0) {
         throw new Error("incorrect arguments");
       }
     }
 
-    if (size === 2) {
+    if (CONTEXT_SIZE === 2) {
       if (
         !Number.isInteger(min) ||
         !Number.isInteger(max) ||
@@ -31,7 +31,7 @@ export function generateFibonacciSequence(context) {
   } catch {
     return showMessageWith(
       "failed",
-      "check the list of arguments: you should pass only object like: { min: number, max: number } OR { length: number }, where 'min >= 0', 'max > 0', 'length >= 0' and 'max < min'"
+      "check the list of arguments: you should pass only object like: { min: number, max: number } OR { length: number }, where 'min >= 0', 'max > 0', 'length >= 0' and 'max > min'"
     );
   }
 }
