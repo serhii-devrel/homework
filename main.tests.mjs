@@ -327,6 +327,24 @@ describe("Tests for DEMO 1", () => {
       );
     });
 
+    it("function has been called with incorrect type of arguments: input number greater or equal than 9007199254740991", () => {
+      expect(checkPalindrome(9007199254740991)).to.deep.equal(
+        showMessageWith(
+          "failed",
+          "check the list of arguments: you have to pass only whole number"
+        )
+      );
+    });
+
+    it("function has been called with incorrect type of arguments: input number lower or equal than 10", () => {
+      expect(checkPalindrome(10)).to.deep.equal(
+        showMessageWith(
+          "failed",
+          "check the list of arguments: you have to pass only whole number"
+        )
+      );
+    });
+
     it("function has been called correctly", () => {
       checkPalindromeSPY(12344456);
       expect(checkPalindromeSPY).to.have.been.called.with(12344456);
