@@ -6,14 +6,18 @@ export function makeTheChessBoard(length, width, symbol) {
 * * 
  * * `;
   try {
-    ChessBoardValidator.checkSymbolSizeOf(symbol, 1)
+    const UPPER_BOUND = 20;
+    const EXPECTED_ARGUMENTS_LENGTH = 3;
+    const EXPECTED_SYMBOL_LENGTH = 1;
+
+    ChessBoardValidator.checkSymbolSizeOf(symbol, EXPECTED_SYMBOL_LENGTH)
       .isInteger(length)
       .isInteger(width)
       .lowerOrEqualZero(length)
       .lowerOrEqualZero(width)
-      .greaterOrEqual(length, 20)
-      .greaterOrEqual(width, 20)
-      .checkArgumentsAmount(arguments, 3);
+      .greaterOrEqual(length, UPPER_BOUND)
+      .greaterOrEqual(width, UPPER_BOUND)
+      .checkArgumentsAmount(arguments, EXPECTED_ARGUMENTS_LENGTH);
     return result;
   } catch {
     return showMessageWith(
