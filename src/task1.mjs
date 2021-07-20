@@ -1,25 +1,19 @@
-// Validator
-import { showMessageWith } from "./helpers.mjs";
+// Helpers
+import { showMessageWith, ChessBoardValidator } from "./helpers.mjs";
 
 export function makeTheChessBoard(length, width, symbol) {
-  const sizeOf = (entity) => entity.length;
   let result = `
 * * 
  * * `;
-
   try {
-    if (
-      sizeOf(symbol) !== 1 ||
-      !Number.isInteger(length) ||
-      !Number.isInteger(width) ||
-      length <= 0 ||
-      length >= 20 ||
-      width <= 0 ||
-      width >= 20 ||
-      arguments.length > 3
-    ) {
-      throw new Error("incorrect arguments");
-    }
+    ChessBoardValidator.checkSymbolSizeOf(symbol, 1)
+      .isInteger(length)
+      .isInteger(width)
+      .lowerOrEqualZero(length)
+      .lowerOrEqualZero(width)
+      .greaterOrEqual(length, 20)
+      .greaterOrEqual(width, 20)
+      .checkArgumentsAmount(arguments, 3);
     return result;
   } catch {
     return showMessageWith(
