@@ -1,11 +1,14 @@
-// Validator
-import { showMessageWith } from "./helpers.mjs";
+// Helpers
+import { showMessageWith, TrianglesValidator } from "./helpers.mjs";
 
 export function sortTriangles(triangles) {
   try {
-    if (!Array.isArray(triangles) || arguments.length > 1) {
-      throw new Error("incorrect arguments");
-    }
+    const EXPECTED_ARGUMENTS_LENGTH = 1;
+
+    TrianglesValidator.isArray(triangles).checkArgumentsAmount(
+      arguments,
+      EXPECTED_ARGUMENTS_LENGTH
+    );
 
     const vertices = triangles
       .map(({ vertices }) => vertices)
@@ -24,24 +27,11 @@ export function sortTriangles(triangles) {
     const firstTriangle = sidesValues.slice(0, 3);
     const secondTriangle = sidesValues.slice(3);
 
-    const maxSideFirstTriangle = Math.max(...firstTriangle);
-    const maxSideSecondTriangle = Math.max(...secondTriangle);
+    TrianglesValidator.isTriangle(vertices, sides).sidesAreCorrect(
+      firstTriangle,
+      secondTriangle
+    );
 
-    const sumFirstTriangleSides =
-      firstTriangle.reduce((a, b) => a + b, 0) - maxSideFirstTriangle;
-
-    const sumSecondTriangleSides =
-      secondTriangle.reduce((a, b) => a + b, 0) - maxSideSecondTriangle;
-
-    const enteredTriangleCorrectly = vertices.every((v, i) => v === sides[i]);
-
-    if (
-      !enteredTriangleCorrectly ||
-      sumFirstTriangleSides < maxSideFirstTriangle ||
-      sumSecondTriangleSides < maxSideSecondTriangle
-    ) {
-      throw new Error("incorrect arguments");
-    }
     return ["ABC", "DBC"];
   } catch {
     return showMessageWith(

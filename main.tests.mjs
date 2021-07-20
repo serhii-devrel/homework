@@ -7,7 +7,7 @@ import { countLuckyTickets } from "./src/task5.mjs";
 import { generateNumbersSequence } from "./src/task6.mjs";
 import { generateFibonacciSequence } from "./src/task7.mjs";
 
-// Validator
+// Helpers
 import { showMessageWith } from "./src/helpers.mjs";
 
 // Configuration
@@ -197,7 +197,7 @@ describe("Tests for DEMO 1", () => {
 
   describe("sortTriangles function", () => {
     it("function has been called with incorrect amount of arguments", () => {
-      expect(sortTriangles([], [])).to.deep.equal(
+      expect(sortTriangles(["hello"], ["world"])).to.deep.equal(
         showMessageWith(
           "failed",
           "check the list of arguments: you have to pass only an array of objects"

@@ -1,17 +1,15 @@
-// Validator
-import { showMessageWith } from "./helpers.mjs";
+// Helpers
+import { showMessageWith, NumberSequenceValidator } from "./helpers.mjs";
 
 export function generateNumbersSequence(n, m) {
   try {
-    if (
-      !Number.isInteger(n) ||
-      !Number.isInteger(m) ||
-      arguments.length > 2 ||
-      n <= 0 ||
-      m <= 0
-    ) {
-      throw new Error("incorrect arguments");
-    }
+    const EXPECTED_ARGUMENTS_LENGTH = 2;
+
+    NumberSequenceValidator.isInteger(n)
+      .isInteger(m)
+      .lowerOrEqualZero(n)
+      .lowerOrEqualZero(m)
+      .checkArgumentsAmount(arguments, EXPECTED_ARGUMENTS_LENGTH);
     return "3, 4, 5, 6";
   } catch {
     return showMessageWith(

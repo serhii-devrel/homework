@@ -1,24 +1,23 @@
-// Validator
-import { showMessageWith } from "./helpers.mjs";
+// Helpers
+import { showMessageWith, LuckyTicketsValidator } from "./helpers.mjs";
 
 export function countLuckyTickets(context) {
   const { min, max } = context;
 
   try {
+    const EXPECTED_ARGUMENTS_LENGTH = 1;
     const MIN = min > max ? max : min;
     const MAX = max < min ? min : max;
+    const UPPER_BOUND = 999999;
 
-    if (
-      !Number.isInteger(MIN) ||
-      !Number.isInteger(MAX) ||
-      arguments.length > 1 ||
-      MAX > 999999 ||
-      MIN > 999999 ||
-      MIN <= 0 ||
-      MAX <= 0
-    ) {
-      throw new Error("incorrect arguments");
-    }
+    LuckyTicketsValidator.isInteger(MIN)
+      .isInteger(MAX)
+      .lowerOrEqualZero(MIN)
+      .lowerOrEqualZero(MAX)
+      .greaterStrictly(MAX, UPPER_BOUND)
+      .greaterStrictly(MIN, UPPER_BOUND)
+      .checkArgumentsAmount(arguments, EXPECTED_ARGUMENTS_LENGTH);
+
     return { winner: "", tickets: { simple: 0, hard: 0 } };
   } catch {
     return showMessageWith(

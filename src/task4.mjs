@@ -1,16 +1,19 @@
-// Validator
-import { showMessageWith } from "./helpers.mjs";
+// Helpers
+import { showMessageWith, PalindromeValidator } from "./helpers.mjs";
 
 export function checkPalindrome(num) {
   try {
-    if (
-      !Number.isInteger(num) ||
-      num <= 10 ||
-      num >= 9007199254740991 ||
-      arguments.length > 1
-    ) {
-      throw new Error("incorrect arguments");
-    }
+    const EXPECTED_ARGUMENTS_LENGTH = 1;
+    const BOUNDARIES = {
+      LOWER: 10,
+      UPPER: 9007199254740991,
+    };
+
+    PalindromeValidator.isInteger(num)
+      .lowerOrEqual(num, BOUNDARIES.LOWER)
+      .greaterOrEqual(num, BOUNDARIES.UPPER)
+      .checkArgumentsAmount(arguments, EXPECTED_ARGUMENTS_LENGTH);
+
     return 0;
   } catch {
     return showMessageWith(
