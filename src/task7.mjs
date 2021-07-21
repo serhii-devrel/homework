@@ -4,6 +4,7 @@ import { showMessageWith, FibonacciSequenceValidator } from "./helpers.mjs";
 export function generateFibonacciSequence(context) {
   try {
     const EXPECTED_ARGUMENTS_LENGTH = 1;
+    const UPPER_BOUND = 1;
     const { min, max, length } = context;
     const OBJECT_TYPE = Object.keys(context).length;
     const TYPES = {
@@ -18,15 +19,16 @@ export function generateFibonacciSequence(context) {
 
     switch (OBJECT_TYPE) {
       case TYPES.WITH_LENGTH:
-        FibonacciSequenceValidator.isInteger(length).lowerThanZeroStrictly(
-          length
+        FibonacciSequenceValidator.isInteger(length).lowerOrEqual(
+          length,
+          UPPER_BOUND
         );
         break;
       case TYPES.WITH_BOUNDARIES:
         FibonacciSequenceValidator.isInteger(min)
           .isInteger(max)
-          .lowerThanZeroStrictly(min)
-          .lowerOrEqualZero(max)
+          .lowerOrEqual(min, UPPER_BOUND)
+          .lowerOrEqual(max, UPPER_BOUND)
           .lowerStrictly(max, min);
         break;
       default:

@@ -274,15 +274,8 @@ export class FibonacciSequenceValidator extends Validator {
     return this;
   }
 
-  static lowerThanZeroStrictly(number) {
-    if (super.lowerThanZeroStrictly(number)) {
-      throw new Error("incorrect arguments");
-    }
-    return this;
-  }
-
-  static lowerOrEqualZero(number) {
-    if (super.lowerOrEqualZero(number)) {
+  static lowerOrEqual(number, expectedLength) {
+    if (super.lowerOrEqual(number, expectedLength)) {
       throw new Error("incorrect arguments");
     }
     return this;

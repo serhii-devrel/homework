@@ -600,7 +600,7 @@ describe("Tests for DEMO 1", () => {
     });
 
     it("function has been called with correct arguments and returns array based on { min, max }", () => {
-      expect(generateFibonacciSequence({ min: 0, max: 5 })).to.be.an("array");
+      expect(generateFibonacciSequence({ min: 2, max: 5 })).to.be.an("array");
     });
 
     it("function has been called with correct arguments and returns array based on { length }", () => {
@@ -608,7 +608,7 @@ describe("Tests for DEMO 1", () => {
     });
 
     it("function returns fibonacci sequence correctly based on { min, max }", () => {
-      expect(generateFibonacciSequence({ min: 0, max: 5 })).to.deep.equal([
+      expect(generateFibonacciSequence({ min: 2, max: 5 })).to.deep.equal([
         0, 1, 1, 2, 3,
       ]);
     });
