@@ -100,7 +100,7 @@ describe("Tests for DEMO 1", () => {
     });
 
     it("function has been called with correct arguments and returns chess board", () => {
-      expect(makeTheChessBoard(2, 2, "*")).to.equal("\n* * \n * * ");
+      expect(makeTheChessBoard(2, 2, "*")).to.equal("\n* * \n * *");
     });
 
     it("symbol length only equals as one", () => {

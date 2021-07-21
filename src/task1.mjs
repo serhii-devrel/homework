@@ -4,7 +4,7 @@ import { showMessageWith, ChessBoardValidator } from "./helpers.mjs";
 export function makeTheChessBoard(length, width, symbol) {
   let result = `
 * * 
- * * `;
+ * *`;
   try {
     const UPPER_BOUND = 20;
     const EXPECTED_ARGUMENTS_LENGTH = 3;
