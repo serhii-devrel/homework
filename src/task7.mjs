@@ -38,7 +38,7 @@ export function generateFibonacciSequence(context) {
   } catch {
     return showMessageWith(
       "failed",
-      "check the list of arguments: you should pass only object like: { min: number, max: number } OR { length: number }, where 'min >= 0', 'max > 0', 'length >= 0' and 'max > min'"
+      "check the list of arguments: you should pass only object like: { min: number, max: number } OR { length: number }, where 'min > 1', 'max > 1', 'length > 1' and 'max > min'"
     );
   }
 }

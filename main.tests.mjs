@@ -525,7 +525,7 @@ describe("Tests for DEMO 1", () => {
       expect(generateFibonacciSequence({ min: 5, max: 10 }, 5)).to.deep.equal(
         showMessageWith(
           "failed",
-          "check the list of arguments: you should pass only object like: { min: number, max: number } OR { length: number }, where 'min >= 0', 'max > 0', 'length >= 0' and 'max > min'"
+          "check the list of arguments: you should pass only object like: { min: number, max: number } OR { length: number }, where 'min > 1', 'max > 1', 'length > 1' and 'max > min'"
         )
       );
     });
@@ -534,7 +534,7 @@ describe("Tests for DEMO 1", () => {
       expect(generateFibonacciSequence({ min: "3", max: "5" })).to.deep.equal(
         showMessageWith(
           "failed",
-          "check the list of arguments: you should pass only object like: { min: number, max: number } OR { length: number }, where 'min >= 0', 'max > 0', 'length >= 0' and 'max > min'"
+          "check the list of arguments: you should pass only object like: { min: number, max: number } OR { length: number }, where 'min > 1', 'max > 1', 'length > 1' and 'max > min'"
         )
       );
     });
@@ -543,7 +543,7 @@ describe("Tests for DEMO 1", () => {
       expect(generateFibonacciSequence({ length: "5" })).to.deep.equal(
         showMessageWith(
           "failed",
-          "check the list of arguments: you should pass only object like: { min: number, max: number } OR { length: number }, where 'min >= 0', 'max > 0', 'length >= 0' and 'max > min'"
+          "check the list of arguments: you should pass only object like: { min: number, max: number } OR { length: number }, where 'min > 1', 'max > 1', 'length > 1' and 'max > min'"
         )
       );
     });
@@ -552,7 +552,7 @@ describe("Tests for DEMO 1", () => {
       expect(generateFibonacciSequence({ min: -3, max: -5 })).to.deep.equal(
         showMessageWith(
           "failed",
-          "check the list of arguments: you should pass only object like: { min: number, max: number } OR { length: number }, where 'min >= 0', 'max > 0', 'length >= 0' and 'max > min'"
+          "check the list of arguments: you should pass only object like: { min: number, max: number } OR { length: number }, where 'min > 1', 'max > 1', 'length > 1' and 'max > min'"
         )
       );
     });
@@ -561,7 +561,7 @@ describe("Tests for DEMO 1", () => {
       expect(generateFibonacciSequence({ length: -5 })).to.deep.equal(
         showMessageWith(
           "failed",
-          "check the list of arguments: you should pass only object like: { min: number, max: number } OR { length: number }, where 'min >= 0', 'max > 0', 'length >= 0' and 'max > min'"
+          "check the list of arguments: you should pass only object like: { min: number, max: number } OR { length: number }, where 'min > 1', 'max > 1', 'length > 1' and 'max > min'"
         )
       );
     });
@@ -570,7 +570,7 @@ describe("Tests for DEMO 1", () => {
       expect(generateFibonacciSequence({ min: 3.5, max: 5.5 })).to.deep.equal(
         showMessageWith(
           "failed",
-          "check the list of arguments: you should pass only object like: { min: number, max: number } OR { length: number }, where 'min >= 0', 'max > 0', 'length >= 0' and 'max > min'"
+          "check the list of arguments: you should pass only object like: { min: number, max: number } OR { length: number }, where 'min > 1', 'max > 1', 'length > 1' and 'max > min'"
         )
       );
     });
@@ -579,15 +579,15 @@ describe("Tests for DEMO 1", () => {
       expect(generateFibonacciSequence({ length: 5.5 })).to.deep.equal(
         showMessageWith(
           "failed",
-          "check the list of arguments: you should pass only object like: { min: number, max: number } OR { length: number }, where 'min >= 0', 'max > 0', 'length >= 0' and 'max > min'"
+          "check the list of arguments: you should pass only object like: { min: number, max: number } OR { length: number }, where 'min > 1', 'max > 1', 'length > 1' and 'max > min'"
         )
       );
     });
 
     it("function has been called correctly based on { min, max }", () => {
-      generateFibonacciSequenceSPY({ min: 0, max: 5 });
+      generateFibonacciSequenceSPY({ min: 2, max: 5 });
       expect(generateFibonacciSequenceSPY).to.have.been.called.with({
-        min: 0,
+        min: 2,
         max: 5,
       });
     });
