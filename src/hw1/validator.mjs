@@ -66,3 +66,26 @@ export class PaintCansValidator extends Validator {
     return this;
   }
 }
+
+export class GoldenSandValidator extends Validator {
+  static isInteger(number) {
+    if (!super.isInteger(number)) {
+      throw Error("incorrect arguments");
+    }
+    return this;
+  }
+
+  static lowerThanZeroStrictly(number) {
+    if (super.lowerThanZeroStrictly(number)) {
+      throw Error("incorrect arguments");
+    }
+    return this;
+  }
+
+  static lowerOrEqual(number, expectedLength) {
+    if (!super.lowerOrEqual(number, expectedLength)) {
+      throw Error("incorrect arguments");
+    }
+    return this;
+  }
+}
