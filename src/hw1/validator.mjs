@@ -89,3 +89,26 @@ export class GoldenSandValidator extends Validator {
     return this;
   }
 }
+
+export class LuckyTicketValidator extends Validator {
+  static isInteger(number) {
+    if (!super.isInteger(number)) {
+      throw Error("incorrect arguments");
+    }
+    return this;
+  }
+
+  static lowerStrictly(number, expectedLength) {
+    if (!super.lowerStrictly(number, expectedLength)) {
+      throw Error("incorrect arguments");
+    }
+    return this;
+  }
+
+  static greaterOrEqualZero(number) {
+    if (!super.greaterOrEqualZero(number)) {
+      throw Error("incorrect arguments");
+    }
+    return this;
+  }
+}
