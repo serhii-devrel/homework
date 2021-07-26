@@ -1,6 +1,16 @@
 // Validator
 import { LuckyTicketValidator } from "./validator.mjs";
 
+function useLuckyPartFromTicket(ticket, boundaries = []) {
+  const part = ticket
+    .slice(...boundaries)
+    .split("")
+    .map((i) => Number(i))
+    .reduce((a, b) => a + b, 0);
+
+  return part;
+}
+
 function checkLuckyTicket(ticket) {
   try {
     const UPPER_BOUND = 10 ** 6;
@@ -10,19 +20,8 @@ function checkLuckyTicket(ticket) {
 
     const formattedTicket =
       "000000".slice(0, 6 - String(ticket).length) + ticket;
-
-    const firstPart = formattedTicket
-      .slice(0, 3)
-      .split("")
-      .map((i) => Number(i))
-      .reduce((a, b) => a + b, 0);
-
-    const secondPart = formattedTicket
-      .slice(3)
-      .split("")
-      .map((i) => Number(i))
-      .reduce((a, b) => a + b, 0);
-
+    const firstPart = useLuckyPartFromTicket(formattedTicket, [0, 3]);
+    const secondPart = useLuckyPartFromTicket(formattedTicket, [3]);
     return firstPart === secondPart ? "YES" : "NO";
   } catch {
     return "check arguments";
