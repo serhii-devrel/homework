@@ -17,9 +17,7 @@ function countPaintCans(length, width, height) {
 
     // hw + hl + hw + hl = 2hw + 2hl = 2(hw + hl)
     const square = 2 * (height * width + height * length);
-    return square % CONSUMPTION !== 0
-      ? Math.ceil(square / CONSUMPTION)
-      : square / CONSUMPTION;
+    return Math.ceil(square / CONSUMPTION);
   } catch {
     return "check arguments";
   }
