@@ -1,9 +1,15 @@
+// Validator
+import { TicTacToeValidator } from "./validator.mjs";
+
 function checkTicTacToe(desk) {
   try {
+    TicTacToeValidator.isArray(desk);
   } catch {
     return "check arguments";
   }
 }
+
+console.log(checkTicTacToe("[0, 0, 1]")); // Incorrect call
 
 console.log(
   checkTicTacToe([

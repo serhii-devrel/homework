@@ -1,5 +1,10 @@
+// Validator
+import { ChairsValidator } from "./validator.mjs";
+
 function findAChair(rooms, needChairs) {
   try {
+    ChairsValidator.isArray(rooms).isInteger(needChairs);
+
     if (needChairs === 0) return "Game On";
     const places = rooms.map(([took, free]) => Math.max(free - took.length, 0));
     const totalFreePlaces = places.reduce((a, b) => a + b, 0);
@@ -13,6 +18,17 @@ function findAChair(rooms, needChairs) {
     return "check arguments";
   }
 }
+
+console.log(
+  findAChair(
+    [
+      ["XXX", 3],
+      ["XXXXX", 6],
+      ["XXXXXX", 9],
+    ],
+    "4"
+  )
+); // Incorrect call
 
 console.log(
   findAChair(
