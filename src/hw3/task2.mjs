@@ -15,7 +15,7 @@ function checkTicTacToe(desk) {
     const horizontal = sumOf2D(replacedDesk);
     const deskT = replacedDesk[0].map((_, i) => replacedDesk.map((r) => r[i]));
     const vertical = sumOf2D(deskT);
-    const mainDiagonal = sumOf2D([replacedDesk.map((i, index) => i[index])]);
+    const mainDiagonal = sumOf2D([replacedDesk.map((r, i) => r[i])]);
     const sideDiagonal = sumOf2D([replacedDesk.map((r, i) => r[-i + 2])]);
     const SELECTION = [horizontal, vertical, mainDiagonal, sideDiagonal].flat();
     switch (true) {
