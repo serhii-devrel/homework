@@ -21,6 +21,12 @@ function chronos(year, month, day) {
     const YEAR = year - 1;
     const MONTH = month - 1;
     const DAY = day;
+    /**
+     * From the start, like:
+     * 1 year, 1 day, 1 month it will be: (360 * 0 + 0 + 0 + 1) = 1
+     * 2 year, 1 day, 1 month it will be: (360 * 1 + 0 + 0 + 1) = 361
+     * etc.
+     */
     const PAST_DAYS = DAYS_IN_YEAR * YEAR + MONTH * DAYS_IN_MONTH + DAY;
 
     if (isYearLeap(year) && month > 2) {

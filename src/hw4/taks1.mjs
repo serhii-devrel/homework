@@ -13,6 +13,7 @@ function countIPs(firstAddress, secondAddress) {
     const formattedFirstAddress = getFormattedAddress(firstAddress, ".");
     const formattedSecondAddress = getFormattedAddress(secondAddress, ".");
     return formattedFirstAddress.reduce(
+      // One byte = eight bits, so:
       (a, b, i) => (a << 8) + formattedSecondAddress[i] - b,
       0
     );
