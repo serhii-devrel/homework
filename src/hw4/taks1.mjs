@@ -8,13 +8,14 @@ function countIPs(firstAddress, secondAddress) {
       .stringNotEmpty(firstAddress)
       .stringNotEmpty(secondAddress);
 
+    const BITS_TO_OFFSET = 8;
     const getFormattedAddress = (address, separator) =>
       address.split(separator).map((i) => Number(i));
     const formattedFirstAddress = getFormattedAddress(firstAddress, ".");
     const formattedSecondAddress = getFormattedAddress(secondAddress, ".");
     return formattedFirstAddress.reduce(
       // One byte = eight bits, so:
-      (a, b, i) => (a << 8) + formattedSecondAddress[i] - b,
+      (a, b, i) => (a << BITS_TO_OFFSET) + formattedSecondAddress[i] - b,
       0
     );
   } catch {
