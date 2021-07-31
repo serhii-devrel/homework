@@ -10,7 +10,7 @@ import { generateFibonacciSequence } from "./src/task7.mjs";
 console.log("makeTheChessBoard: ", makeTheChessBoard(5, 5, "*"));
 console.log(
   "coverAnalysis: ",
-  coverAnalysis({ a: 5.25, b: 10 }, { c: 8.25, d: 10 })
+  coverAnalysis({ a: 5.25, b: 9 }, { c: 8.25, d: 10 })
 );
 console.log("sortTriangles: ", sortTriangles([]));
 console.log("checkPalindrome: ", checkPalindrome(1234437));

@@ -82,22 +82,15 @@ export class ChessBoardValidator extends Validator {
     return this;
   }
 
-  static lowerOrEqualZero(number) {
-    if (super.lowerOrEqualZero(number)) {
+  static greaterThanZeroStrictly(number) {
+    if (!super.greaterThanZeroStrictly(number)) {
       throw new Error("incorrect arguments");
     }
     return this;
   }
 
-  static lowerOrEqualZero(number) {
-    if (super.lowerOrEqualZero(number)) {
-      throw new Error("incorrect arguments");
-    }
-    return this;
-  }
-
-  static greaterOrEqual(number, expectedLength) {
-    if (super.greaterOrEqual(number, expectedLength)) {
+  static lowerOrEqual(number, expectedLength) {
+    if (!super.lowerOrEqual(number, expectedLength)) {
       throw new Error("incorrect arguments");
     }
     return this;
@@ -119,15 +112,15 @@ export class CoverValidator extends Validator {
     return this;
   }
 
-  static lowerThanZeroStrictly(number) {
-    if (super.lowerThanZeroStrictly(number)) {
+  static greaterThanZeroStrictly(number) {
+    if (!super.greaterThanZeroStrictly(number)) {
       throw new Error("incorrect arguments");
     }
     return this;
   }
 
-  static greaterStrictly(number, expectedLength) {
-    if (super.greaterStrictly(number, expectedLength)) {
+  static lowerStrictly(number, expectedLength) {
+    if (!super.lowerStrictly(number, expectedLength)) {
       throw new Error("incorrect arguments");
     }
     return this;
