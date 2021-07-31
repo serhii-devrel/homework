@@ -57,8 +57,8 @@ describe("makeTheChessBoard function", () => {
     );
   });
 
-  it("function has been called with incorrect type of arguments: length and width >= 20", () => {
-    expect(makeTheChessBoard(20, 20, "*")).to.deep.equal(
+  it("function has been called with incorrect type of arguments: length and width <= 20", () => {
+    expect(makeTheChessBoard(21, 21, "*")).to.deep.equal(
       showMessageWith(
         "failed",
         "check the list of arguments: 'length' and 'width' should be a number > 0, 'symbol' should be a string with length > 0"
@@ -80,7 +80,7 @@ describe("makeTheChessBoard function", () => {
   });
 
   it("function has been called with correct arguments and returns chess board", () => {
-    expect(makeTheChessBoard(2, 2, "*")).to.equal("\n* * \n * *");
+    expect(makeTheChessBoard(2, 2, "*")).to.equal("\n* * \n * * \n");
   });
 
   it("symbol length only equals as one", () => {
