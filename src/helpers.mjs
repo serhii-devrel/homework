@@ -5,7 +5,7 @@ export function showMessageWith(status, reason) {
   };
 }
 
-class Validator {
+export class Validator {
   static sizeOf(entity) {
     return entity.length;
   }
@@ -16,6 +16,14 @@ class Validator {
 
   static isNumber(entity) {
     return Number.isFinite(entity);
+  }
+
+  static isString(string) {
+    return typeof string === "string";
+  }
+
+  static stringNotEmpty(string) {
+    return string.length >= 1;
   }
 
   static isArray(entity) {

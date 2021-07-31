@@ -8,9 +8,9 @@ function countPaintCans(length, width, height) {
     PaintCansValidator.isInteger(length)
       .isInteger(width)
       .isInteger(height)
-      .lowerThanZeroStrictly(length)
-      .lowerThanZeroStrictly(width)
-      .lowerThanZeroStrictly(height)
+      .greaterThanZeroStrictly(length)
+      .greaterThanZeroStrictly(width)
+      .greaterThanZeroStrictly(height)
       .lowerOrEqual(length, UPPER_BOUND)
       .lowerOrEqual(width, UPPER_BOUND)
       .lowerOrEqual(height, UPPER_BOUND);
