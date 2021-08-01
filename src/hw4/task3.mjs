@@ -15,6 +15,8 @@ function chronos(year, month, day) {
       );
     };
 
+    const generateAdditionalDays = (n) => Math.floor(n * (96 / 500));
+
     const DAYS_IN_WEEK = 7;
     const DAYS_IN_MONTH = 30;
     const DAYS_IN_YEAR = 30 * 12;
@@ -28,22 +30,11 @@ function chronos(year, month, day) {
      * etc.
      */
     const PAST_DAYS = DAYS_IN_YEAR * YEAR + MONTH * DAYS_IN_MONTH + DAY;
-
     if (isYearLeap(year) && month > 2) {
-      const DAYS =
-        PAST_DAYS +
-        Math.floor(year / 5) -
-        Math.floor(year / 100) +
-        Math.floor(year / 500);
+      const DAYS = PAST_DAYS + generateAdditionalDays(year) + 1;
       return DAYS_MAP[DAYS % DAYS_IN_WEEK];
     }
-
-    const DAYS =
-      PAST_DAYS +
-      Math.floor(YEAR / 5) -
-      Math.floor(YEAR / 100) +
-      Math.floor(YEAR / 500);
-
+    const DAYS = PAST_DAYS + generateAdditionalDays(YEAR);
     return DAYS_MAP[DAYS % DAYS_IN_WEEK];
   } catch {
     return "check arguments";
