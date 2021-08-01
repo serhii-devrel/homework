@@ -56,8 +56,8 @@ describe("checkPalindrome function", () => {
     );
   });
 
-  it("function has been called with incorrect type of arguments: input number greater or equal than 9007199254740991", () => {
-    expect(checkPalindrome(9007199254740991)).to.deep.equal(
+  it("function has been called with incorrect type of arguments: input number greater than 9007199254740991", () => {
+    expect(checkPalindrome(9007199254740992)).to.deep.equal(
       showMessageWith(
         "failed",
         "check the list of arguments: you have to pass only whole number"
@@ -65,8 +65,8 @@ describe("checkPalindrome function", () => {
     );
   });
 
-  it("function has been called with incorrect type of arguments: input number lower or equal than 10", () => {
-    expect(checkPalindrome(10)).to.deep.equal(
+  it("function has been called with incorrect type of arguments: input number lower  than 10", () => {
+    expect(checkPalindrome(9)).to.deep.equal(
       showMessageWith(
         "failed",
         "check the list of arguments: you have to pass only whole number"
@@ -84,10 +84,10 @@ describe("checkPalindrome function", () => {
   });
 
   it("palindrome has been found", () => {
-    expect(checkPalindromeSPY(1337)).to.equal(33);
+    expect(checkPalindrome(1337)).to.equal(33);
   });
 
   it("palindrome hasn't been found", () => {
-    expect(checkPalindromeSPY(8)).to.equal(0);
+    expect(checkPalindrome(12)).to.equal(0);
   });
 });

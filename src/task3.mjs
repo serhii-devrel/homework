@@ -5,34 +5,25 @@ export function sortTriangles(triangles) {
   try {
     const EXPECTED_ARGUMENTS_LENGTH = 1;
 
-    TrianglesValidator.isArray(triangles).checkArgumentsAmount(
-      arguments,
-      EXPECTED_ARGUMENTS_LENGTH
-    );
+    TrianglesValidator.isArray(triangles)
+      .checkArgumentsAmount(arguments, EXPECTED_ARGUMENTS_LENGTH)
+      .isTriangle(triangles)
+      .sidesAreCorrect(triangles);
 
-    const vertices = triangles
-      .map(({ vertices }) => vertices)
-      .flatMap((item) => item.split(""))
-      .map((item) => item.toLowerCase());
-
-    const sides = triangles
-      .map(({ vertices, ...sides }) => sides)
-      .flatMap((item) => Object.keys(item))
-      .map((item) => item.toLowerCase());
-
-    const sidesValues = triangles
-      .map(({ vertices, ...sides }) => sides)
-      .flatMap((item) => Object.values(item));
-
-    const firstTriangle = sidesValues.slice(0, 3);
-    const secondTriangle = sidesValues.slice(3);
-
-    TrianglesValidator.isTriangle(vertices, sides).sidesAreCorrect(
-      firstTriangle,
-      secondTriangle
-    );
-
-    return ["ABC", "DBC"];
+    return triangles
+      .map(({ vertices, ...t }) => {
+        const sides = Object.values(t);
+        const p = (1 / 2) * (sides[0] + sides[1] + sides[2]);
+        const square = Math.trunc(
+          Math.sqrt(p * (p - sides[0]) * (p - sides[1]) * (p - sides[2]))
+        );
+        return {
+          vertices,
+          square,
+        };
+      })
+      .sort((a, b) => b.square - a.square)
+      .map((i) => i.vertices);
   } catch {
     return showMessageWith(
       "failed",

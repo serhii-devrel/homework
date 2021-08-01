@@ -141,7 +141,25 @@ export class TrianglesValidator extends Validator {
     return this;
   }
 
-  static isTriangle(vertices, sides) {
+  static useTriangle(triangles) {
+    const vertices = triangles
+      .map(({ vertices }) => vertices)
+      .flatMap((item) => item.split(""))
+      .map((item) => item.toLowerCase());
+
+    const sides = triangles
+      .map(({ vertices, ...sides }) => sides)
+      .flatMap((item) => Object.keys(item))
+      .map((item) => item.toLowerCase());
+
+    return {
+      vertices,
+      sides,
+    };
+  }
+
+  static isTriangle(triangles) {
+    const { vertices, sides } = this.useTriangle(triangles);
     const enteredTriangleCorrectly = vertices.every((v, i) => v === sides[i]);
     if (!enteredTriangleCorrectly) {
       throw new Error("incorrect arguments");
@@ -149,7 +167,13 @@ export class TrianglesValidator extends Validator {
     return this;
   }
 
-  static sidesAreCorrect(firstTriangle, secondTriangle) {
+  static sidesAreCorrect(triangles) {
+    const sidesValues = triangles
+      .map(({ vertices, ...sides }) => sides)
+      .flatMap((item) => Object.values(item));
+
+    const firstTriangle = sidesValues.slice(0, 3);
+    const secondTriangle = sidesValues.slice(3);
     const maxSideFirstTriangle = Math.max(...firstTriangle);
     const maxSideSecondTriangle = Math.max(...secondTriangle);
 
@@ -177,15 +201,15 @@ export class PalindromeValidator extends Validator {
     return this;
   }
 
-  static lowerOrEqual(number, expectedLength) {
-    if (super.lowerOrEqual(number, expectedLength)) {
+  static greaterOrEqual(number, expectedLength) {
+    if (!super.greaterOrEqual(number, expectedLength)) {
       throw new Error("incorrect arguments");
     }
     return this;
   }
 
-  static greaterOrEqual(number, expectedLength) {
-    if (super.greaterOrEqual(number, expectedLength)) {
+  static lowerOrEqual(number, expectedLength) {
+    if (!super.lowerOrEqual(number, expectedLength)) {
       throw new Error("incorrect arguments");
     }
     return this;

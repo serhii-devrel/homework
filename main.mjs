@@ -12,7 +12,14 @@ console.log(
   "coverAnalysis: ",
   coverAnalysis({ a: 5.25, b: 9 }, { c: 8.25, d: 10 })
 );
-console.log("sortTriangles: ", sortTriangles([]));
+console.log(
+  "sortTriangles: ",
+  sortTriangles([
+    { vertices: "ABC", a: 10, b: 20, c: 18 },
+    { vertices: "DBC", d: 14, b: 12, c: 16.4 },
+    { vertices: "XYZ", x: 11, y: 14.4, z: 13 },
+  ])
+);
 console.log("checkPalindrome: ", checkPalindrome(1234437));
 console.log("countLuckyTickets: ", countLuckyTickets({ min: 10, max: 43 }));
 console.log("generateNumbersSequence: ", generateNumbersSequence(15, 64));
