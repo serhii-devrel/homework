@@ -4,7 +4,7 @@ import { showMessageWith, CoverValidator } from "./helpers.mjs";
 export function coverAnalysis(firstCover, secondCover) {
   try {
     const UPPER_BOUND = 1000000;
-    const EXPECTED_ARGUMENTS_LENGTH = 3;
+    const EXPECTED_ARGUMENTS_LENGTH = 2;
     CoverValidator.isNumber(firstCover.a)
       .isNumber(firstCover.b)
       .isNumber(secondCover.c)
