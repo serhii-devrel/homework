@@ -21,7 +21,10 @@ console.log(
   ])
 );
 console.log("checkPalindrome: ", checkPalindrome(1234437));
-console.log("countLuckyTickets: ", countLuckyTickets({ min: 10, max: 43 }));
+console.log(
+  "countLuckyTickets: ",
+  countLuckyTickets({ min: 53042, max: 30042 })
+);
 console.log("generateNumbersSequence: ", generateNumbersSequence(15, 64));
 console.log(
   "generateFibonacciSequence [based on min and max]: ",

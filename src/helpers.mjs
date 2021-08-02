@@ -238,15 +238,15 @@ export class LuckyTicketsValidator extends Validator {
     return this;
   }
 
-  static lowerOrEqualZero(number) {
-    if (super.lowerOrEqualZero(number)) {
+  static greaterThanZeroStrictly(number) {
+    if (!super.greaterThanZeroStrictly(number)) {
       throw new Error("incorrect arguments");
     }
     return this;
   }
 
-  static greaterStrictly(number, expectedLength) {
-    if (super.greaterStrictly(number, expectedLength)) {
+  static lowerOrEqual(number, expectedLength) {
+    if (!super.lowerOrEqual(number, expectedLength)) {
       throw new Error("incorrect arguments");
     }
     return this;
@@ -261,8 +261,8 @@ export class NumberSequenceValidator extends Validator {
     return this;
   }
 
-  static lowerOrEqualZero(number) {
-    if (super.lowerOrEqualZero(number)) {
+  static greaterOrEqualZero(number) {
+    if (!super.greaterOrEqualZero(number)) {
       throw new Error("incorrect arguments");
     }
     return this;

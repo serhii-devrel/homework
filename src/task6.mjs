@@ -4,13 +4,17 @@ import { showMessageWith, NumberSequenceValidator } from "./helpers.mjs";
 export function generateNumbersSequence(n, m) {
   try {
     const EXPECTED_ARGUMENTS_LENGTH = 2;
-
     NumberSequenceValidator.isInteger(n)
       .isInteger(m)
-      .lowerOrEqualZero(n)
-      .lowerOrEqualZero(m)
+      .greaterOrEqualZero(n)
+      .greaterOrEqualZero(m)
       .checkArgumentsAmount(arguments, EXPECTED_ARGUMENTS_LENGTH);
-    return "3, 4, 5, 6";
+
+    const MIN = Math.ceil(Math.sqrt(m));
+    return new Array(n)
+      .fill(null)
+      .map((_, i) => MIN + i)
+      .join(", ");
   } catch {
     return showMessageWith(
       "failed",

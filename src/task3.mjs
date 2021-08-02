@@ -4,7 +4,6 @@ import { showMessageWith, TrianglesValidator } from "./helpers.mjs";
 export function sortTriangles(triangles) {
   try {
     const EXPECTED_ARGUMENTS_LENGTH = 1;
-
     TrianglesValidator.isArray(triangles)
       .checkArgumentsAmount(arguments, EXPECTED_ARGUMENTS_LENGTH)
       .isTriangle(triangles)
