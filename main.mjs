@@ -28,7 +28,7 @@ console.log(
 console.log("generateNumbersSequence: ", generateNumbersSequence(15, 64));
 console.log(
   "generateFibonacciSequence [based on min and max]: ",
-  generateFibonacciSequence({ min: 10, max: 27 })
+  generateFibonacciSequence({ min: 2, max: 5 })
 );
 console.log(
   "generateFibonacciSequence [based on length]: ",

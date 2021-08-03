@@ -108,13 +108,13 @@ describe("generateFibonacciSequence function", () => {
 
   it("function returns fibonacci sequence correctly based on { min, max }", () => {
     expect(generateFibonacciSequence({ min: 2, max: 5 })).to.deep.equal([
-      0, 1, 1, 2, 3,
+      2, 3, 5,
     ]);
   });
 
   it("function returns fibonacci sequence correctly based on { length }", () => {
     expect(generateFibonacciSequence({ length: 5 })).to.deep.equal([
-      0, 1, 1, 2, 3,
+      1, 2, 3, 5, 8,
     ]);
   });
 });

@@ -291,8 +291,8 @@ export class FibonacciSequenceValidator extends Validator {
     return this;
   }
 
-  static lowerOrEqual(number, expectedLength) {
-    if (super.lowerOrEqual(number, expectedLength)) {
+  static greaterStrictly(number, expectedLength) {
+    if (!super.greaterStrictly(number, expectedLength)) {
       throw new Error("incorrect arguments");
     }
     return this;
@@ -303,5 +303,42 @@ export class FibonacciSequenceValidator extends Validator {
       throw new Error("incorrect arguments");
     }
     return this;
+  }
+
+  static validateObjectBasedOnLength(length, bound) {
+    this.isInteger(length).greaterStrictly(length, bound);
+  }
+
+  static validateObjectBasedOnRange(min, max, bound) {
+    this.isInteger(min)
+      .isInteger(max)
+      .greaterStrictly(min, bound)
+      .greaterStrictly(max, bound)
+      .lowerStrictly(max, min);
+  }
+
+  static validateObjectBasedOnContext(
+    context,
+    bound,
+    args,
+    expectedArgumentsLength
+  ) {
+    const OBJECT_TYPE = Object.keys(context).length;
+    const { min, max, length } = context;
+    const TYPES = {
+      WITH_LENGTH: 1,
+      WITH_BOUNDARIES: 2,
+    };
+    this.checkArgumentsAmount(args, expectedArgumentsLength);
+    switch (OBJECT_TYPE) {
+      case TYPES.WITH_LENGTH:
+        this.validateObjectBasedOnLength(length, bound);
+        return "with length";
+      case TYPES.WITH_BOUNDARIES:
+        this.validateObjectBasedOnRange(min, max, bound);
+        return "with boundaries";
+      default:
+        break;
+    }
   }
 }
