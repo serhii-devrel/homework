@@ -29,13 +29,6 @@ describe("countLuckyTickets function", () => {
     );
   });
 
-  it("function has been called with incorrect constraint [min > max]", () => {
-    expect(countLuckyTickets({ min: 10, max: 5 })).to.deep.equal({
-      winner: "both",
-      tickets: { simple: 0, hard: 0 },
-    });
-  });
-
   it("function has been called with incorrect constraint [only max <= 0]", () => {
     expect(countLuckyTickets({ min: 5, max: 0 })).to.deep.equal(
       showMessageWith(
@@ -107,6 +100,13 @@ describe("countLuckyTickets function", () => {
     });
   });
 
+  it("function has been called correctly but [min > max] and values will switch", () => {
+    expect(countLuckyTickets({ min: 200, max: 100 })).to.deep.equal({
+      winner: "hard",
+      tickets: { simple: 0, hard: 8 },
+    });
+  });
+
   it("hard method win", () => {
     expect(countLuckyTickets({ min: 100, max: 200 })).to.deep.equal({
       winner: "hard",
@@ -115,7 +115,7 @@ describe("countLuckyTickets function", () => {
   });
 
   it("simple method win", () => {
-    expect(countLuckyTickets({ min: 53042, max: 30042 })).to.deep.equal({
+    expect(countLuckyTickets({ min: 30042, max: 53042 })).to.deep.equal({
       winner: "simple",
       tickets: { simple: 980, hard: 892 },
     });

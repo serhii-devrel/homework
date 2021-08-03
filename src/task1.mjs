@@ -31,7 +31,7 @@ export function makeTheChessBoard(length, width, symbol) {
   } catch {
     return showMessageWith(
       "failed",
-      "check the list of arguments: 'length' and 'width' should be a number > 0, 'symbol' should be a string with length > 0"
+      "check the list of arguments: 'length' and 'width' should be a number > 0, 'symbol' should be a string with length = 1"
     );
   }
 }

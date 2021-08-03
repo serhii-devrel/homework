@@ -25,7 +25,7 @@ describe("makeTheChessBoard function", () => {
     expect(makeTheChessBoard()).to.deep.equal(
       showMessageWith(
         "failed",
-        "check the list of arguments: 'length' and 'width' should be a number > 0, 'symbol' should be a string with length > 0"
+        "check the list of arguments: 'length' and 'width' should be a number > 0, 'symbol' should be a string with length = 1"
       )
     );
   });
@@ -34,7 +34,7 @@ describe("makeTheChessBoard function", () => {
     expect(makeTheChessBoard(2.5, 2.5, "*")).to.deep.equal(
       showMessageWith(
         "failed",
-        "check the list of arguments: 'length' and 'width' should be a number > 0, 'symbol' should be a string with length > 0"
+        "check the list of arguments: 'length' and 'width' should be a number > 0, 'symbol' should be a string with length = 1"
       )
     );
   });
@@ -43,7 +43,7 @@ describe("makeTheChessBoard function", () => {
     expect(makeTheChessBoard(-5, -5, "*")).to.deep.equal(
       showMessageWith(
         "failed",
-        "check the list of arguments: 'length' and 'width' should be a number > 0, 'symbol' should be a string with length > 0"
+        "check the list of arguments: 'length' and 'width' should be a number > 0, 'symbol' should be a string with length = 1"
       )
     );
   });
@@ -52,16 +52,16 @@ describe("makeTheChessBoard function", () => {
     expect(makeTheChessBoard("2.5", "2.5", "*")).to.deep.equal(
       showMessageWith(
         "failed",
-        "check the list of arguments: 'length' and 'width' should be a number > 0, 'symbol' should be a string with length > 0"
+        "check the list of arguments: 'length' and 'width' should be a number > 0, 'symbol' should be a string with length = 1"
       )
     );
   });
 
-  it("function has been called with incorrect type of arguments: length and width <= 20", () => {
+  it("function has been called with incorrect type of arguments: length and width > 20", () => {
     expect(makeTheChessBoard(21, 21, "*")).to.deep.equal(
       showMessageWith(
         "failed",
-        "check the list of arguments: 'length' and 'width' should be a number > 0, 'symbol' should be a string with length > 0"
+        "check the list of arguments: 'length' and 'width' should be a number > 0, 'symbol' should be a string with length = 1"
       )
     );
   });
@@ -87,7 +87,7 @@ describe("makeTheChessBoard function", () => {
     expect(makeTheChessBoard(2, 2, "**")).to.deep.equal(
       showMessageWith(
         "failed",
-        "check the list of arguments: 'length' and 'width' should be a number > 0, 'symbol' should be a string with length > 0"
+        "check the list of arguments: 'length' and 'width' should be a number > 0, 'symbol' should be a string with length = 1"
       )
     );
   });

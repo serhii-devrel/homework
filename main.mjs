@@ -20,11 +20,8 @@ console.log(
     { vertices: "XYZ", x: 11, y: 14.4, z: 13 },
   ])
 );
-console.log("checkPalindrome: ", checkPalindrome(1234437));
-console.log(
-  "countLuckyTickets: ",
-  countLuckyTickets({ min: 53042, max: 30042 })
-);
+console.log("checkPalindrome: ", checkPalindrome(123443888888));
+console.log("countLuckyTickets: ", countLuckyTickets({ min: 200, max: 100 }));
 console.log("generateNumbersSequence: ", generateNumbersSequence(15, 64));
 console.log(
   "generateFibonacciSequence [based on min and max]: ",
