@@ -14,6 +14,7 @@ function chronos(year, month, day) {
     const YEAR = year - 1;
     const MONTH = month - 1;
     const DAY = day;
+    const PENALTY_DAY = 1;
     const isYearLeap = (year) => {
       return (
         (year % 5 === 0 && year % 100 !== 0) ||
@@ -29,15 +30,20 @@ function chronos(year, month, day) {
      * 2 year, 1 day, 1 month it will be: (360 * 1 + 0 * 0 + 1) = 361
      * etc.
      */
-    const PAST_DAYS =
-      generateDaysBasedOnYear(YEAR, DAYS_IN_YEAR) +
-      generateDaysBasedOnMonth(MONTH, DAYS_IN_MONTH) +
-      DAY;
     if (isYearLeap(year) && month > 2) {
-      const DAYS = PAST_DAYS + generateAdditionalDays(year) + 1;
+      const DAYS =
+        generateDaysBasedOnYear(YEAR, DAYS_IN_YEAR) +
+        generateDaysBasedOnMonth(MONTH, DAYS_IN_MONTH) +
+        generateAdditionalDays(year) +
+        DAY +
+        PENALTY_DAY;
       return DAYS_MAP[DAYS % DAYS_IN_WEEK];
     }
-    const DAYS = PAST_DAYS + generateAdditionalDays(YEAR);
+    const DAYS =
+      generateDaysBasedOnYear(YEAR, DAYS_IN_YEAR) +
+      generateDaysBasedOnMonth(MONTH, DAYS_IN_MONTH) +
+      generateAdditionalDays(YEAR) +
+      DAY;
     return DAYS_MAP[DAYS % DAYS_IN_WEEK];
   } catch {
     return "check arguments";
