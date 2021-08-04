@@ -10,10 +10,9 @@ export function generateNumbersSequence(n, m) {
       .greaterOrEqualZero(m)
       .checkArgumentsAmount(arguments, EXPECTED_ARGUMENTS_LENGTH);
 
-    const MIN = Math.ceil(Math.sqrt(m));
     return new Array(n)
       .fill(null)
-      .map((_, i) => MIN + i)
+      .map((_, i) => Math.ceil(Math.sqrt(m)) + i)
       .join(", ");
   } catch {
     return showMessageWith(
