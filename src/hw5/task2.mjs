@@ -9,7 +9,7 @@ function findPartitionMax(n) {
       FIRST_PART: [],
       SECOND_PART: [],
     };
-    const getMaxValue = (arr) => arr.reduce((a, b) => a * b);
+    const computeProductValue = (arr) => arr.reduce((a, b) => a * b);
     let START_VALUE = n;
     for (let i = START_VALUE; i > 4; i -= 3) {
       START_VALUE -= 3;
@@ -17,12 +17,13 @@ function findPartitionMax(n) {
     }
     if (START_VALUE === 4) {
       RESULT.SECOND_PART = [...RESULT.FIRST_PART];
-      RESULT.FIRST_PART.push(2, 2);
+      RESULT.FIRST_PART.push(2);
+      RESULT.FIRST_PART.push(2);
       RESULT.SECOND_PART.unshift(4);
     } else {
       RESULT.FIRST_PART.push(START_VALUE);
     }
-    RESULT.PRODUCT_VALUE = getMaxValue(RESULT.FIRST_PART);
+    RESULT.PRODUCT_VALUE = computeProductValue(RESULT.FIRST_PART);
     const PARTITIONS = [
       RESULT.PRODUCT_VALUE,
       RESULT.FIRST_PART,
