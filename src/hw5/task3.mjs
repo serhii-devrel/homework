@@ -20,14 +20,14 @@ function sellTickets(visitors) {
     };
     for (let visitor of visitors) {
       let till = visitor - RATING.TWENTY_FIVE;
-      PULL[visitor]++;
+      PULL[visitor] += 1;
       if (till === RATING.TWENTY_FIVE || till === RATING.FIFTY) {
-        PULL[till]--;
+        PULL[till] -= 1;
       }
       if (till === RATING.SEVENTY_FIVE) {
         if (PULL[RATING.FIFTY] > 0) {
-          PULL[RATING.FIFTY]--;
-          PULL[RATING.TWENTY_FIVE]--;
+          PULL[RATING.FIFTY] -= 1;
+          PULL[RATING.TWENTY_FIVE] -= 1;
         } else {
           PULL[RATING.TWENTY_FIVE] = PULL[RATING.TWENTY_FIVE] - 3;
         }
