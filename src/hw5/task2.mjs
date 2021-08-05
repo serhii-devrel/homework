@@ -15,13 +15,16 @@ function findPartitionMax(n) {
       START_VALUE -= 3;
       RESULT.FIRST_PART.push(3);
     }
-    if (START_VALUE === 4) {
-      RESULT.SECOND_PART = [...RESULT.FIRST_PART];
-      RESULT.FIRST_PART.push(2);
-      RESULT.FIRST_PART.push(2);
-      RESULT.SECOND_PART.unshift(4);
-    } else {
-      RESULT.FIRST_PART.push(START_VALUE);
+    switch (START_VALUE) {
+      case 4:
+        RESULT.SECOND_PART = [...RESULT.FIRST_PART];
+        RESULT.FIRST_PART.push(2);
+        RESULT.FIRST_PART.push(2);
+        RESULT.SECOND_PART.unshift(4);
+        break;
+      default:
+        RESULT.FIRST_PART.push(START_VALUE);
+        break;
     }
     RESULT.PRODUCT_VALUE = computeProductValue(RESULT.FIRST_PART);
     const PARTITIONS = [
