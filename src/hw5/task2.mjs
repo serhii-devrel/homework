@@ -4,6 +4,7 @@ import { PartitionValidator } from "./validator.mjs";
 function findPartitionMax(n) {
   try {
     PartitionValidator.isInteger(n).greaterThanZeroStrictly(n);
+
     let RESULT = {
       PRODUCT_VALUE: 0,
       FIRST_PART: [],
