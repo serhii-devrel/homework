@@ -7,6 +7,7 @@ function sellTickets(visitors) {
       .arrayNotEmpty(visitors)
       .arrayContainsOnlyIntegers(visitors);
 
+    const pullIsEmpty = (data) => Object.values(data).some((i) => i < 0);
     let PULL = {
       25: 0,
       50: 0,
@@ -32,13 +33,7 @@ function sellTickets(visitors) {
           PULL[RATING.TWENTY_FIVE] = PULL[RATING.TWENTY_FIVE] - 3;
         }
       }
-      if (
-        PULL[RATING.TWENTY_FIVE] < 0 ||
-        PULL[RATING.FIFTY] < 0 ||
-        PULL[RATING.HUNDRED] < 0
-      ) {
-        return "NO";
-      }
+      if (pullIsEmpty(PULL)) return "NO";
     }
     return "YES";
   } catch {
