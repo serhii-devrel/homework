@@ -19,9 +19,11 @@ export function coverAnalysis(firstCover, secondCover) {
       .lowerStrictly(secondCover.d, UPPER_BOUND)
       .checkArgumentsAmount(arguments, EXPECTED_ARGUMENTS_LENGTH);
 
-    if (firstCover.a < secondCover.c && firstCover.b < secondCover.d) {
+    const { a, b } = firstCover;
+    const { c, d } = secondCover;
+    if (a < c && b < d) {
       return 1;
-    } else if (firstCover.a > secondCover.c && firstCover.b > secondCover.d) {
+    } else if (a > c && b > d) {
       return 2;
     }
     return 0;

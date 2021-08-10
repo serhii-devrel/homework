@@ -10,11 +10,16 @@ export function sortTriangles(triangles) {
       .sidesAreCorrect(triangles);
 
     return triangles
-      .map(({ vertices, ...t }) => {
-        const sides = Object.values(t);
-        const p = (1 / 2) * (sides[0] + sides[1] + sides[2]);
+      .map(({ vertices, ...records }) => {
+        const sides = Object.values(records);
+        const perimeter = (1 / 2) * (sides[0] + sides[1] + sides[2]);
         const square = Math.trunc(
-          Math.sqrt(p * (p - sides[0]) * (p - sides[1]) * (p - sides[2]))
+          Math.sqrt(
+            perimeter *
+              (perimeter - sides[0]) *
+              (perimeter - sides[1]) *
+              (perimeter - sides[2])
+          )
         );
         return {
           vertices,
@@ -22,7 +27,7 @@ export function sortTriangles(triangles) {
         };
       })
       .sort((a, b) => b.square - a.square)
-      .map((i) => i.vertices);
+      .map((triangle) => triangle.vertices);
   } catch {
     return showMessageWith(
       "failed",

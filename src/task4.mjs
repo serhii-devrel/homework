@@ -1,9 +1,12 @@
 // Helpers
 import { showMessageWith, PalindromeValidator } from "./helpers.mjs";
 
-function isPalindrome(str) {
-  const reversedStr = str.split("").reverse().join("");
-  return str === reversedStr;
+function isPalindrome(possiblePalindrome) {
+  const reversedPossiblePalindrome = possiblePalindrome
+    .split("")
+    .reverse()
+    .join("");
+  return possiblePalindrome === reversedPossiblePalindrome;
 }
 
 export function checkPalindrome(num) {
@@ -20,13 +23,21 @@ export function checkPalindrome(num) {
 
     const palindromeList = [];
     const mappedNumber = String(num);
-    for (let i = 0; i < mappedNumber.length; i++) {
-      let value = "";
-      value += mappedNumber[i];
-      for (let j = i + 1; j < mappedNumber.length; j++) {
-        value += mappedNumber[j];
-        if (isPalindrome(value)) {
-          palindromeList.push(value);
+    for (
+      let currentCharIndex = 0;
+      currentCharIndex < mappedNumber.length;
+      currentCharIndex++
+    ) {
+      let possiblePalindrome = "";
+      possiblePalindrome += mappedNumber[currentCharIndex];
+      for (
+        let nextCharIndex = currentCharIndex + 1;
+        nextCharIndex < mappedNumber.length;
+        nextCharIndex++
+      ) {
+        possiblePalindrome += mappedNumber[nextCharIndex];
+        if (isPalindrome(possiblePalindrome)) {
+          palindromeList.push(possiblePalindrome);
         }
       }
     }

@@ -1,18 +1,18 @@
 // Helpers
 import { showMessageWith, NumberSequenceValidator } from "./helpers.mjs";
 
-export function generateNumbersSequence(n, m) {
+export function generateNumbersSequence(length, number) {
   try {
     const EXPECTED_ARGUMENTS_LENGTH = 2;
-    NumberSequenceValidator.isInteger(n)
-      .isInteger(m)
-      .greaterOrEqualZero(n)
-      .greaterOrEqualZero(m)
+    NumberSequenceValidator.isInteger(length)
+      .isInteger(number)
+      .greaterOrEqualZero(length)
+      .greaterOrEqualZero(number)
       .checkArgumentsAmount(arguments, EXPECTED_ARGUMENTS_LENGTH);
 
-    return new Array(n)
+    return new Array(length)
       .fill(null)
-      .map((_, i) => Math.ceil(Math.sqrt(m)) + i)
+      .map((_, increment) => Math.ceil(Math.sqrt(number)) + increment)
       .join(", ");
   } catch {
     return showMessageWith(

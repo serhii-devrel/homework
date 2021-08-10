@@ -15,19 +15,19 @@ export function makeTheChessBoard(length, width, symbol) {
       .lowerOrEqual(width, UPPER_BOUND)
       .checkArgumentsAmount(arguments, EXPECTED_ARGUMENTS_LENGTH);
 
-    let result = "\n";
-    for (let i = 1; i <= length; i += 1) {
-      if (i % 2 === 0) {
-        result += " ";
+    let chessBoard = "\n";
+    for (let row = 1; row <= length; row += 1) {
+      if (row % 2 === 0) {
+        chessBoard += " ";
       }
-      for (let j = 1; j <= width; j += 1) {
-        result += `${symbol} `;
-        if (j === width) {
-          result += "\n";
+      for (let characters = 1; characters <= width; characters += 1) {
+        chessBoard += `${symbol} `;
+        if (characters === width) {
+          chessBoard += "\n";
         }
       }
     }
-    return result;
+    return chessBoard;
   } catch {
     return showMessageWith(
       "failed",

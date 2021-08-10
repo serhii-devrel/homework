@@ -148,7 +148,7 @@ export class TrianglesValidator extends Validator {
       .map((item) => item.toLowerCase());
 
     const sides = triangles
-      .map(({ vertices, ...sides }) => sides)
+      .map(({ vertices, ...records }) => records)
       .flatMap((item) => Object.keys(item))
       .map((item) => item.toLowerCase());
 
@@ -160,7 +160,9 @@ export class TrianglesValidator extends Validator {
 
   static isTriangle(triangles) {
     const { vertices, sides } = this.useTriangle(triangles);
-    const enteredTriangleCorrectly = vertices.every((v, i) => v === sides[i]);
+    const enteredTriangleCorrectly = vertices.every(
+      (currentName, expectedName) => currentName === sides[expectedName]
+    );
     if (!enteredTriangleCorrectly) {
       throw new Error("incorrect arguments");
     }
@@ -168,24 +170,24 @@ export class TrianglesValidator extends Validator {
   }
 
   static sidesAreCorrect(triangles) {
-    const sidesValues = triangles
-      .map(({ vertices, ...sides }) => sides)
+    const sides = triangles
+      .map(({ vertices, ...records }) => records)
       .flatMap((item) => Object.values(item));
 
-    const firstTriangle = sidesValues.slice(0, 3);
-    const secondTriangle = sidesValues.slice(3);
-    const maxSideFirstTriangle = Math.max(...firstTriangle);
-    const maxSideSecondTriangle = Math.max(...secondTriangle);
+    const firstTriangle = sides.slice(0, 3);
+    const secondTriangle = sides.slice(3);
+    const maxSideFromFirstTriangle = Math.max(...firstTriangle);
+    const maxSideFromSecondTriangle = Math.max(...secondTriangle);
 
-    const sumFirstTriangleSides =
-      firstTriangle.reduce((a, b) => a + b, 0) - maxSideFirstTriangle;
+    const sumOfPartiesForFirstTriangle =
+      firstTriangle.reduce((a, b) => a + b, 0) - maxSideFromFirstTriangle;
 
-    const sumSecondTriangleSides =
-      secondTriangle.reduce((a, b) => a + b, 0) - maxSideSecondTriangle;
+    const sumOfPartiesForSecondTriangle =
+      secondTriangle.reduce((a, b) => a + b, 0) - maxSideFromSecondTriangle;
 
     if (
-      sumFirstTriangleSides < maxSideFirstTriangle ||
-      sumSecondTriangleSides < maxSideSecondTriangle
+      sumOfPartiesForFirstTriangle < maxSideFromFirstTriangle ||
+      sumOfPartiesForSecondTriangle < maxSideFromSecondTriangle
     ) {
       throw new Error("incorrect arguments");
     }
@@ -298,13 +300,6 @@ export class FibonacciSequenceValidator extends Validator {
     return this;
   }
 
-  static lowerStrictly(max, min) {
-    if (super.lowerStrictly(max, min)) {
-      throw new Error("incorrect arguments");
-    }
-    return this;
-  }
-
   static validateObjectBasedOnLength(length, bound) {
     this.isInteger(length).greaterStrictly(length, bound);
   }
@@ -313,8 +308,7 @@ export class FibonacciSequenceValidator extends Validator {
     this.isInteger(min)
       .isInteger(max)
       .greaterStrictly(min, bound)
-      .greaterStrictly(max, bound)
-      .lowerStrictly(max, min);
+      .greaterStrictly(max, bound);
   }
 
   static validateObjectBasedOnContext(

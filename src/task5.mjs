@@ -3,8 +3,8 @@ import { showMessageWith, LuckyTicketsValidator } from "./helpers.mjs";
 
 function useSequence(min, max) {
   const tickets = [];
-  for (let i = min; tickets.length - 1 < max - min; i++) {
-    tickets.push("000000".slice(0, 6 - String(i).length) + i);
+  for (let start = min; tickets.length - 1 < max - min; start++) {
+    tickets.push("000000".slice(0, 6 - String(start).length) + start);
   }
   return {
     tickets,
@@ -13,16 +13,16 @@ function useSequence(min, max) {
 
 function useHardMethod(tickets) {
   let hard = 0;
-  const getSumFromRange = (s, isEven = false) => {
-    return s
+  const getSumFromRange = (ticket, isEven = false) => {
+    return ticket
       .split("")
-      .map((v) => Number(v))
-      .filter((v) => (isEven ? v % 2 === 0 : v % 2 !== 0))
+      .map((value) => Number(value))
+      .filter((value) => (isEven ? value % 2 === 0 : value % 2 !== 0))
       .reduce((a, b) => a + b, 0);
   };
-  for (let i = 0; i < tickets.length - 1; i++) {
-    const evenPart = getSumFromRange(tickets[i], true);
-    const oddPart = getSumFromRange(tickets[i]);
+  for (let ticket = 0; ticket < tickets.length - 1; ticket++) {
+    const evenPart = getSumFromRange(tickets[ticket], true);
+    const oddPart = getSumFromRange(tickets[ticket]);
     if (evenPart === oddPart) hard += 1;
   }
   return {
@@ -33,16 +33,16 @@ function useHardMethod(tickets) {
 function useSimpleMethod(tickets, boundaries) {
   let simple = 0;
   const { start, end } = boundaries;
-  const getSumFromRange = (s, ...range) => {
-    return s
+  const getSumFromRange = (ticket, ...range) => {
+    return ticket
       .slice(...range)
       .split("")
-      .map((v) => Number(v))
+      .map((value) => Number(value))
       .reduce((a, b) => a + b, 0);
   };
-  for (let i = 0; i < tickets.length - 1; i++) {
-    const firstPart = getSumFromRange(tickets[i], ...start);
-    const secondPart = getSumFromRange(tickets[i], ...end);
+  for (let ticket = 0; ticket < tickets.length - 1; ticket++) {
+    const firstPart = getSumFromRange(tickets[ticket], ...start);
+    const secondPart = getSumFromRange(tickets[ticket], ...end);
     if (firstPart === secondPart) simple += 1;
   }
   return {
