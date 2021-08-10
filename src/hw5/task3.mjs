@@ -7,33 +7,35 @@ function sellTickets(visitors) {
       .arrayNotEmpty(visitors)
       .arrayContainsOnlyIntegers(visitors);
 
-    const pullIsEmpty = (data) => Object.values(data).some((i) => i < 0);
-    let PULL = {
-      25: 0,
-      50: 0,
-      100: 0,
-    };
-    const RATING = {
+    const pullIsEmpty = (pull) => Object.values(pull).some((i) => i < 0);
+    const BILLS = {
       TWENTY_FIVE: 25,
       FIFTY: 50,
       SEVENTY_FIVE: 75,
       HUNDRED: 100,
     };
-    for (let visitor of visitors) {
-      let till = visitor - RATING.TWENTY_FIVE;
-      PULL[visitor] += 1;
-      if (till === RATING.TWENTY_FIVE || till === RATING.FIFTY) {
-        PULL[till] -= 1;
+    const BALANCE_ON_HAND = {
+      [BILLS.TWENTY_FIVE]: 0,
+      [BILLS.FIFTY]: 0,
+      [BILLS.HUNDRED]: 0,
+    };
+    for (let bill of visitors) {
+      const change = bill - BILLS.TWENTY_FIVE;
+      BALANCE_ON_HAND[bill] += 1;
+      if (change === BILLS.TWENTY_FIVE || change === BILLS.FIFTY) {
+        BALANCE_ON_HAND[change] -= 1;
       }
-      if (till === RATING.SEVENTY_FIVE) {
-        if (PULL[RATING.FIFTY] > 0) {
-          PULL[RATING.FIFTY] -= 1;
-          PULL[RATING.TWENTY_FIVE] -= 1;
+      if (change === BILLS.SEVENTY_FIVE) {
+        if (BALANCE_ON_HAND[BILLS.FIFTY] > 0) {
+          BALANCE_ON_HAND[BILLS.FIFTY] -= 1;
+          BALANCE_ON_HAND[BILLS.TWENTY_FIVE] -= 1;
         } else {
-          PULL[RATING.TWENTY_FIVE] = PULL[RATING.TWENTY_FIVE] - 3;
+          BALANCE_ON_HAND[BILLS.TWENTY_FIVE] -= 3;
         }
       }
-      if (pullIsEmpty(PULL)) return "NO";
+      if (pullIsEmpty(BALANCE_ON_HAND)) {
+        return "NO";
+      }
     }
     return "YES";
   } catch {
