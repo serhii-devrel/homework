@@ -5,7 +5,8 @@ fruits.reduce((acc, w) => acc.concat(w.slice(0, 1)), []);
 
 // as filter
 fruits.reduce(
-  (acc, w) => (w.slice(0, 1).toLowerCase() === "а" && acc.concat(w)) || [],
+  (acc, w) =>
+    (w.slice(0, 1).toLowerCase() === "а" && acc.concat(w)) || [...acc],
   []
 );
 
