@@ -25,7 +25,7 @@ console.log("countLuckyTickets: ", countLuckyTickets({ min: 200, max: 100 }));
 console.log("generateNumbersSequence: ", generateNumbersSequence(15, 64));
 console.log(
   "generateFibonacciSequence [based on min and max]: ",
-  generateFibonacciSequence({ min: 2, max: 5 })
+  generateFibonacciSequence({ min: 5, max: 10 })
 );
 console.log(
   "generateFibonacciSequence [based on length]: ",

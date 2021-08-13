@@ -21,12 +21,21 @@ export function coverAnalysis(firstCover, secondCover) {
 
     const { a, b } = firstCover;
     const { c, d } = secondCover;
+    const COVERS = {
+      UNKNOWN: 0,
+      FIRST: 1,
+      SECOND: 2,
+    };
+    let nestedCover = COVERS.UNKNOWN;
+
     if (a < c && b < d) {
-      return 1;
-    } else if (a > c && b > d) {
-      return 2;
+      nestedCover = COVERS.FIRST;
     }
-    return 0;
+
+    if (a > c && b > d) {
+      nestedCover = COVERS.SECOND;
+    }
+    return nestedCover;
   } catch {
     return showMessageWith(
       "failed",

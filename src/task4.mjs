@@ -23,25 +23,20 @@ export function checkPalindrome(num) {
 
     const palindromeList = [];
     const mappedNumber = String(num);
-    for (
-      let currentCharIndex = 0;
-      currentCharIndex < mappedNumber.length;
-      currentCharIndex++
-    ) {
+    const numberLength = mappedNumber.length;
+    for (let char = 0; char < numberLength; char++) {
       let possiblePalindrome = "";
-      possiblePalindrome += mappedNumber[currentCharIndex];
-      for (
-        let nextCharIndex = currentCharIndex + 1;
-        nextCharIndex < mappedNumber.length;
-        nextCharIndex++
-      ) {
-        possiblePalindrome += mappedNumber[nextCharIndex];
+      possiblePalindrome += mappedNumber[char];
+      for (let nextChar = char + 1; nextChar < numberLength; nextChar++) {
+        possiblePalindrome += mappedNumber[nextChar];
         if (isPalindrome(possiblePalindrome)) {
           palindromeList.push(possiblePalindrome);
         }
       }
     }
-    return Number(palindromeList.sort((a, b) => a - b).pop()) || 0;
+    const fallback = 0;
+    const palindrome = Number(palindromeList.sort((a, b) => a - b).pop());
+    return palindrome || fallback;
   } catch {
     return showMessageWith(
       "failed",

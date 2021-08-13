@@ -93,7 +93,7 @@ describe("generateFibonacciSequence function", () => {
 
   it("function has been called correctly but [min > max] and values will switch", () => {
     expect(generateFibonacciSequence({ min: 5, max: 2 })).to.deep.equal([
-      2, 3, 5,
+      2, 3, 5, 8,
     ]);
   });
 
@@ -114,7 +114,7 @@ describe("generateFibonacciSequence function", () => {
 
   it("function returns fibonacci sequence correctly based on { min, max }", () => {
     expect(generateFibonacciSequence({ min: 2, max: 5 })).to.deep.equal([
-      2, 3, 5,
+      2, 3, 5, 8,
     ]);
   });
 

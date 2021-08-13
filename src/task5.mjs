@@ -23,7 +23,9 @@ function useHardMethod(tickets) {
   for (let ticket = 0; ticket < tickets.length - 1; ticket++) {
     const evenPart = getSumFromRange(tickets[ticket], true);
     const oddPart = getSumFromRange(tickets[ticket]);
-    if (evenPart === oddPart) hard += 1;
+    if (evenPart === oddPart) {
+      hard += 1;
+    }
   }
   return {
     hard,
@@ -43,7 +45,9 @@ function useSimpleMethod(tickets, boundaries) {
   for (let ticket = 0; ticket < tickets.length - 1; ticket++) {
     const firstPart = getSumFromRange(tickets[ticket], ...start);
     const secondPart = getSumFromRange(tickets[ticket], ...end);
-    if (firstPart === secondPart) simple += 1;
+    if (firstPart === secondPart) {
+      simple += 1;
+    }
   }
   return {
     simple,
@@ -65,7 +69,6 @@ function useWinner(simple, hard) {
 
 export function countLuckyTickets(context) {
   const { min, max } = context;
-
   try {
     const EXPECTED_ARGUMENTS_LENGTH = 1;
     const MIN = min > max ? max : min;

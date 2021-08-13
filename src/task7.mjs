@@ -3,7 +3,7 @@ import { showMessageWith, FibonacciSequenceValidator } from "./helpers.mjs";
 
 function generateSequenceBasedOnRange(min, max) {
   const sequence = generateSequenceBasedOnLength(max);
-  return sequence.slice(min - 1, max - 1);
+  return sequence.slice(min - 1, max);
 }
 
 function generateSequenceBasedOnLength(length) {
@@ -19,6 +19,10 @@ export function generateFibonacciSequence(context) {
   try {
     const EXPECTED_ARGUMENTS_LENGTH = 1;
     const UPPER_BOUND = 1;
+    const TYPES = {
+      WITH_BOUNDARIES: "with boundaries",
+      WITH_LENGTH: "with length",
+    };
     const CONTEXT_TYPE =
       FibonacciSequenceValidator.validateObjectBasedOnContext(
         context,
@@ -28,12 +32,16 @@ export function generateFibonacciSequence(context) {
       );
 
     const { min, max, length } = context;
-    if (CONTEXT_TYPE === "with boundaries") {
-      const MIN = min > max ? max : min;
-      const MAX = max < min ? min : max;
-      return generateSequenceBasedOnRange(MIN, MAX);
-    } else if (CONTEXT_TYPE === "with length") {
-      return generateSequenceBasedOnLength(length);
+    const { WITH_BOUNDARIES, WITH_LENGTH } = TYPES;
+    switch (CONTEXT_TYPE) {
+      case WITH_BOUNDARIES:
+        const MIN = min > max ? max : min;
+        const MAX = max < min ? min : max;
+        return generateSequenceBasedOnRange(MIN, MAX);
+      case WITH_LENGTH:
+        return generateSequenceBasedOnLength(length);
+      default:
+        break;
     }
   } catch {
     return showMessageWith(
