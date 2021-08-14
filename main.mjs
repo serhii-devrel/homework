@@ -17,7 +17,7 @@ console.log(
   sortTriangles([
     { vertices: "ABC", a: 10, b: 20, c: 18 },
     { vertices: "DBC", d: 14, b: 12, c: 16.4 },
-    { vertices: "XYZ", x: 11, y: 14.4, z: 13 },
+    { vertices: "XYZ", x: 11, y: 22, z: 13 },
   ])
 );
 console.log("checkPalindrome: ", checkPalindrome(123443888888));

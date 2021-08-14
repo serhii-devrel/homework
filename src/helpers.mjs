@@ -22,6 +22,12 @@ class Validator {
     return Array.isArray(entity);
   }
 
+  static chunkArray(arr, size) {
+    return arr.length > size
+      ? [arr.slice(0, size), ...this.chunkArray(arr.slice(size), size)]
+      : [arr];
+  }
+
   static greaterThanZeroStrictly(number) {
     return number > 0;
   }
@@ -170,25 +176,19 @@ export class TrianglesValidator extends Validator {
   }
 
   static sidesAreCorrect(triangles) {
+    const CHUNK_SIZE = 3;
     const sides = triangles
       .map(({ vertices, ...records }) => records)
       .flatMap((item) => Object.values(item));
-
-    const firstTriangle = sides.slice(0, 3);
-    const secondTriangle = sides.slice(3);
-    const maxSideFromFirstTriangle = Math.max(...firstTriangle);
-    const maxSideFromSecondTriangle = Math.max(...secondTriangle);
-
-    const sumOfPartiesForFirstTriangle =
-      firstTriangle.reduce((a, b) => a + b, 0) - maxSideFromFirstTriangle;
-
-    const sumOfPartiesForSecondTriangle =
-      secondTriangle.reduce((a, b) => a + b, 0) - maxSideFromSecondTriangle;
-
-    if (
-      sumOfPartiesForFirstTriangle < maxSideFromFirstTriangle ||
-      sumOfPartiesForSecondTriangle < maxSideFromSecondTriangle
-    ) {
+    const chunksBasedOnSides = this.chunkArray(sides, CHUNK_SIZE);
+    const highs = chunksBasedOnSides.map((sides) => Math.max(...sides));
+    const sumOfParties = chunksBasedOnSides.map(
+      (sides, i) => sides.reduce((a, b) => a + b, 0) - highs[i]
+    );
+    const areNotCorrect = sumOfParties.some(
+      (triangleSide, i) => triangleSide < highs[i]
+    );
+    if (areNotCorrect) {
       throw new Error("incorrect arguments");
     }
     return this;
