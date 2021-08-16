@@ -24,7 +24,7 @@ describe("sortTriangles function", () => {
     expect(sortTriangles(["hello"], ["world"])).to.deep.equal(
       showMessageWith(
         "failed",
-        "check the list of arguments: you have to pass only an array of objects"
+        "check the list of arguments: you have to pass only an array of objects, when triangle has the structure like: { vertices: 'ABC', a: number, b: number, c: number }, sides and vertices must be match"
       )
     );
   });
@@ -33,7 +33,7 @@ describe("sortTriangles function", () => {
     expect(sortTriangles("test string")).to.deep.equal(
       showMessageWith(
         "failed",
-        "check the list of arguments: you have to pass only an array of objects"
+        "check the list of arguments: you have to pass only an array of objects, when triangle has the structure like: { vertices: 'ABC', a: number, b: number, c: number }, sides and vertices must be match"
       )
     );
   });
@@ -58,7 +58,7 @@ describe("sortTriangles function", () => {
     ).to.deep.equal(
       showMessageWith(
         "failed",
-        "check the list of arguments: you have to pass only an array of objects"
+        "check the list of arguments: you have to pass only an array of objects, when triangle has the structure like: { vertices: 'ABC', a: number, b: number, c: number }, sides and vertices must be match"
       )
     );
   });
@@ -90,7 +90,21 @@ describe("sortTriangles function", () => {
     ).to.deep.equal(
       showMessageWith(
         "failed",
-        "check the list of arguments: you have to pass only an array of objects"
+        "check the list of arguments: you have to pass only an array of objects, when triangle has the structure like: { vertices: 'ABC', a: number, b: number, c: number }, sides and vertices must be match"
+      )
+    );
+  });
+
+  it("triangle vertices must be unique", () => {
+    expect(
+      sortTriangles([
+        { vertices: "ABB", a: 10, b: 10, b: 22.36 },
+        { vertices: "DBC", d: 14, b: 12, c: 19 },
+      ])
+    ).to.deep.equal(
+      showMessageWith(
+        "failed",
+        "check the list of arguments: you have to pass only an array of objects, when triangle has the structure like: { vertices: 'ABC', a: number, b: number, c: number }, sides and vertices must be match"
       )
     );
   });

@@ -31,7 +31,7 @@ export function sortTriangles(triangles) {
   } catch {
     return showMessageWith(
       "failed",
-      "check the list of arguments: you have to pass only an array of objects"
+      "check the list of arguments: you have to pass only an array of objects, when triangle has the structure like: { vertices: 'ABC', a: number, b: number, c: number }, sides and vertices must be match"
     );
   }
 }
