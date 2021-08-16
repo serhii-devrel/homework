@@ -180,15 +180,21 @@ export class TrianglesValidator extends Validator {
     const sides = triangles
       .map(({ vertices, ...records }) => records)
       .flatMap((item) => Object.values(item));
+    const vertices = triangles
+      .map(({ vertices }) => vertices)
+      .flatMap((item) => [item.split("")]);
+    const uniqueVertices = vertices.map((item) => [...new Set(item)]);
+    const verticesInTriangleAreRepeat =
+      vertices.flat().length !== uniqueVertices.flat().length;
     const chunksBasedOnSides = this.chunkArray(sides, CHUNK_SIZE);
     const highs = chunksBasedOnSides.map((sides) => Math.max(...sides));
     const sumOfParties = chunksBasedOnSides.map(
       (sides, i) => sides.reduce((a, b) => a + b, 0) - highs[i]
     );
-    const areNotCorrect = sumOfParties.some(
+    const sidesAreNotCorrect = sumOfParties.some(
       (triangleSide, i) => triangleSide < highs[i]
     );
-    if (areNotCorrect) {
+    if (sidesAreNotCorrect || verticesInTriangleAreRepeat) {
       throw new Error("incorrect arguments");
     }
     return this;

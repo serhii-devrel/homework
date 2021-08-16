@@ -3,7 +3,10 @@ import { showMessageWith, FibonacciSequenceValidator } from "./helpers.mjs";
 
 function generateSequenceBasedOnRange(min, max) {
   const sequence = generateSequenceBasedOnLength(max);
-  return sequence.slice(min - 1, max);
+  const sequenceInRange = sequence.filter(
+    (element) => element >= min && element <= max
+  );
+  return sequenceInRange;
 }
 
 function generateSequenceBasedOnLength(length) {
