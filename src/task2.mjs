@@ -5,22 +5,22 @@ export function coverAnalysis(firstCover, secondCover) {
   try {
     const UPPER_BOUND = 1000000;
     const EXPECTED_ARGUMENTS_LENGTH = 2;
-    CoverValidator.isNumber(firstCover.a)
-      .isNumber(firstCover.b)
-      .isNumber(secondCover.c)
-      .isNumber(secondCover.d)
-      .greaterThanZeroStrictly(firstCover.a)
-      .greaterThanZeroStrictly(firstCover.b)
-      .greaterThanZeroStrictly(secondCover.c)
-      .greaterThanZeroStrictly(secondCover.d)
-      .lowerStrictly(firstCover.a, UPPER_BOUND)
-      .lowerStrictly(firstCover.b, UPPER_BOUND)
-      .lowerStrictly(secondCover.c, UPPER_BOUND)
-      .lowerStrictly(secondCover.d, UPPER_BOUND)
-      .checkArgumentsAmount(arguments, EXPECTED_ARGUMENTS_LENGTH);
-
     const { a, b } = firstCover;
     const { c, d } = secondCover;
+    CoverValidator.isNumber(a)
+      .isNumber(b)
+      .isNumber(c)
+      .isNumber(d)
+      .greaterThanZeroStrictly(a)
+      .greaterThanZeroStrictly(b)
+      .greaterThanZeroStrictly(c)
+      .greaterThanZeroStrictly(d)
+      .lowerStrictly(a, UPPER_BOUND)
+      .lowerStrictly(b, UPPER_BOUND)
+      .lowerStrictly(c, UPPER_BOUND)
+      .lowerStrictly(d, UPPER_BOUND)
+      .checkArgumentsAmount(arguments, EXPECTED_ARGUMENTS_LENGTH);
+
     const COVERS = {
       UNKNOWN: 0,
       FIRST: 1,

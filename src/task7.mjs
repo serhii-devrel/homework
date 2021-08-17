@@ -10,9 +10,8 @@ function generateSequenceBasedOnRange(min, max) {
 }
 
 function generateSequenceBasedOnLength(length) {
-  const sequence = [];
-  sequence.push(1, 2);
-  for (let n = 2, i = 0; i < length - 2; n += 1, i += 1) {
+  const sequence = [1, 2];
+  for (let n = 2; n < length; n += 1) {
     sequence.push(sequence[n - 1] + sequence[n - 2]);
   }
   return sequence;
